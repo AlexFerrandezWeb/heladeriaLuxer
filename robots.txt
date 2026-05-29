@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://heladerialuxer.com/sitemap.xml
+Sitemap: https://heladerialuxer.es/sitemap.xml
