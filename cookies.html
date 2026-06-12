@@ -6,10 +6,17 @@
     <title>Política de Cookies | Heladería Luxer</title>
     <meta name="description" content="Política de cookies de Heladería Luxer. Información sobre el uso de cookies en nuestro sitio web.">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://heladerialuxer.es/cookies.html">
-    <link rel="icon" type="image/png" href="assets/logofav.png">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="canonical" href="https://heladerialuxer.es/cookies">
+    <link rel="alternate" hreflang="es" href="https://heladerialuxer.es/cookies">
+    <link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/cookies">
+    <link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/cookies">
+    <link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/cookies">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:locale:alternate" content="en_GB">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <link rel="icon" type="image/webp" href="/assets/logo.webp">
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -42,7 +49,7 @@
             <span class="hamburger"></span>
         </button>
         <a href="/" class="nav__logo-link">
-            <img src="/assets/logo.jpg" alt="Logo Heladería Luxer" class="nav__logo">
+            <img src="/assets/logo.webp" alt="Logo Heladería Luxer" class="nav__logo">
         </a>
         <div class="language-toggle">
             <button class="language-toggle__btn" data-lang="es">ES</button>
@@ -50,12 +57,12 @@
             <button class="language-toggle__btn" data-lang="fr">FR</button>
         </div>
         <ul class="nav__list">
-            <li class="nav__item"><a href="helados.html" class="nav__link" data-i18n="helados">Helados</a></li>
-            <li class="nav__item"><a href="granizados.html" class="nav__link" data-i18n="granizados">Granizados</a></li>
-            <li class="nav__item"><a href="batidos.html" class="nav__link" data-i18n="batidos">Batidos</a></li>
-            <li class="nav__item"><a href="bebidas.html" class="nav__link" data-i18n="bebidas">Bebidas</a></li>
-            <li class="nav__item"><a href="combinados.html" class="nav__link" data-i18n="combinados">Combinados</a></li>
-            <li class="nav__item"><a href="desayunos_postres.html" class="nav__link" data-i18n="desayunos_postres">Desayunos</a></li>
+            <li class="nav__item"><a href="/helados" class="nav__link" data-i18n="helados">Helados</a></li>
+            <li class="nav__item"><a href="/granizados" class="nav__link" data-i18n="granizados">Granizados</a></li>
+            <li class="nav__item"><a href="/batidos" class="nav__link" data-i18n="batidos">Batidos</a></li>
+            <li class="nav__item"><a href="/bebidas" class="nav__link" data-i18n="bebidas">Bebidas</a></li>
+            <li class="nav__item"><a href="/combinados" class="nav__link" data-i18n="combinados">Combinados</a></li>
+            <li class="nav__item"><a href="/desayunos_postres" class="nav__link" data-i18n="desayunos_postres">Desayunos</a></li>
         </ul>
     </nav>
     <main class="main legal-centered" style="background: #fff; border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,0.07); padding: 2em 1em;">
@@ -132,17 +139,22 @@
             </div>
             <div class="footer__section">
                 <h3 class="footer__title" data-i18n="legal">Legal</h3>
-                <a href="privacidad.html" class="footer__link" data-i18n="privacidad">Política de Privacidad</a>
-                <a href="cookies.html" class="footer__link" data-i18n="cookies">Política de Cookies</a>
-                <a href="terminos.html" class="footer__link" data-i18n="terminos">Términos y Condiciones</a>
+                <a href="/privacidad" class="footer__link" data-i18n="privacidad">Política de Privacidad</a>
+                <a href="/cookies" class="footer__link" data-i18n="cookies">Política de Cookies</a>
+                <a href="/terminos" class="footer__link" data-i18n="terminos">Términos y Condiciones</a>
             </div>
         </div>
         <div class="footer__bottom">
             <p class="footer__copyright">&copy; 2025 Heladería Luxer. <span data-i18n="derechos">Todos los derechos reservados.</span></p>
         </div>
     </footer>
-    <script src="translations.js"></script>
-    <script src="script.js"></script>
+    <div id="cookie-bar" class="cookie-bar" style="display:none;">
+      <span><span data-i18n="cookie-aviso">Utilizamos cookies para mejorar tu experiencia.</span> <a href="/cookies" target="_blank" data-i18n="cookie-mas-info">Más info</a></span>
+      <button id="accept-cookies" data-i18n="cookie-aceptar">Aceptar</button>
+    </div>
+
+    <script src="/translations.js"></script>
+    <script src="/script.js"></script>
     <script>
     // Cambio de idioma para el contenido legal
     document.addEventListener('DOMContentLoaded', function() {

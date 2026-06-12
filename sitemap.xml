@@ -1,62 +1,303 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
         <loc>https://heladerialuxer.es/</loc>
-        <lastmod>2026-05-29</lastmod>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/"/>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://heladerialuxer.es/helados.html</loc>
-        <lastmod>2026-05-29</lastmod>
+        <loc>https://heladerialuxer.es/en/</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/fr/</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/helados</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/helados"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/helados"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/helados"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/helados"/>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://heladerialuxer.es/granizados.html</loc>
-        <lastmod>2026-05-29</lastmod>
+        <loc>https://heladerialuxer.es/en/helados</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/helados"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/helados"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/helados"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/helados"/>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://heladerialuxer.es/batidos.html</loc>
-        <lastmod>2026-05-29</lastmod>
+        <loc>https://heladerialuxer.es/fr/helados</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/helados"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/helados"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/helados"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/helados"/>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://heladerialuxer.es/bebidas.html</loc>
-        <lastmod>2026-05-29</lastmod>
+        <loc>https://heladerialuxer.es/granizados</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/granizados"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/granizados"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/granizados"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/granizados"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/en/granizados</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/granizados"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/granizados"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/granizados"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/granizados"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/fr/granizados</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/granizados"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/granizados"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/granizados"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/granizados"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/batidos</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/batidos"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/batidos"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/batidos"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/batidos"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/en/batidos</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/batidos"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/batidos"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/batidos"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/batidos"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/fr/batidos</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/batidos"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/batidos"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/batidos"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/batidos"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/bebidas</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/bebidas"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/bebidas"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/bebidas"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/bebidas"/>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://heladerialuxer.es/combinados.html</loc>
-        <lastmod>2026-05-29</lastmod>
+        <loc>https://heladerialuxer.es/en/bebidas</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/bebidas"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/bebidas"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/bebidas"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/bebidas"/>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://heladerialuxer.es/desayunos_postres.html</loc>
-        <lastmod>2026-05-29</lastmod>
+        <loc>https://heladerialuxer.es/fr/bebidas</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/bebidas"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/bebidas"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/bebidas"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/bebidas"/>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://heladerialuxer.es/privacidad.html</loc>
-        <lastmod>2026-05-29</lastmod>
+        <loc>https://heladerialuxer.es/combinados</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/combinados"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/combinados"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/combinados"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/combinados"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/en/combinados</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/combinados"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/combinados"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/combinados"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/combinados"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/fr/combinados</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/combinados"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/combinados"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/combinados"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/combinados"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/desayunos_postres</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/desayunos_postres"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/desayunos_postres"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/desayunos_postres"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/desayunos_postres"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/en/desayunos_postres</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/desayunos_postres"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/desayunos_postres"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/desayunos_postres"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/desayunos_postres"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/fr/desayunos_postres</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/desayunos_postres"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/desayunos_postres"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/desayunos_postres"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/desayunos_postres"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/privacidad</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/privacidad"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/privacidad"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/privacidad"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/privacidad"/>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
     <url>
-        <loc>https://heladerialuxer.es/cookies.html</loc>
-        <lastmod>2026-05-29</lastmod>
+        <loc>https://heladerialuxer.es/en/privacidad</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/privacidad"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/privacidad"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/privacidad"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/privacidad"/>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
     <url>
-        <loc>https://heladerialuxer.es/terminos.html</loc>
-        <lastmod>2026-05-29</lastmod>
+        <loc>https://heladerialuxer.es/fr/privacidad</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/privacidad"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/privacidad"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/privacidad"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/privacidad"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/cookies</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/cookies"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/cookies"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/cookies"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/cookies"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/en/cookies</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/cookies"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/cookies"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/cookies"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/cookies"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/fr/cookies</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/cookies"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/cookies"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/cookies"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/cookies"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/terminos</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/terminos"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/terminos"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/terminos"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/terminos"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/en/terminos</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/terminos"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/terminos"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/terminos"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/terminos"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://heladerialuxer.es/fr/terminos</loc>
+        <xhtml:link rel="alternate" hreflang="es" href="https://heladerialuxer.es/terminos"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://heladerialuxer.es/en/terminos"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://heladerialuxer.es/fr/terminos"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://heladerialuxer.es/terminos"/>
+        <lastmod>2026-06-12</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
