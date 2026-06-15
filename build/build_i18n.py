@@ -70,6 +70,16 @@ I18N_RE = re.compile(r'(<(\w+)\b[^>]*\bdata-i18n="([^"]+)"[^>]*>)(.*?)(</\2>)', 
 META_RE = lambda attr: re.compile(r'(<meta (?:name|property)="' + re.escape(attr) + r'" content=")[^"]*(">)')
 LINK_RE = re.compile(r'href="/(?!assets/)([a-z_]*)"')
 
+# Texto de respaldo (estático) del overlay de bienvenida. script.js lo sustituye
+# en runtime según la hora del día; aquí dejamos un saludo NEUTRO en el idioma
+# correcto para que el HTML renderizado no contenga español (señal de idioma).
+WELCOME_FALLBACK = {
+ "en": ("Hello!", "Welcome to Heladería Luxer"),
+ "fr": ("Bonjour !", "Bienvenue chez Heladería Luxer"),
+}
+WELCOME_GREETING_RE = re.compile(r'(<h2\b[^>]*\bid="welcome-greeting"[^>]*>).*?(</h2>)', re.DOTALL)
+WELCOME_SUB_RE = re.compile(r'(<p\b[^>]*\bid="welcome-sub"[^>]*>).*?(</p>)', re.DOTALL)
+
 def slug_for(p: Path) -> str:
     return "" if p.stem == "index" else p.stem
 
@@ -84,6 +94,17 @@ def translate_body(text: str, table: dict) -> str:
 
 def set_meta(text: str, attr: str, value: str) -> str:
     return META_RE(attr).sub(lambda m: m.group(1) + html.escape(value, quote=True) + m.group(2), text)
+
+def set_welcome_fallback(text: str, lang: str) -> str:
+    """Traduce el saludo estático del overlay (#welcome-greeting / #welcome-sub).
+    Solo afecta a la portada; en el resto de páginas el regex no encuentra nada."""
+    fb = WELCOME_FALLBACK.get(lang)
+    if not fb:
+        return text
+    greet, sub = fb
+    text = WELCOME_GREETING_RE.sub(lambda m: m.group(1) + html.escape(greet) + m.group(2), text, count=1)
+    text = WELCOME_SUB_RE.sub(lambda m: m.group(1) + html.escape(sub) + m.group(2), text, count=1)
+    return text
 
 def og_locale_block(lang: str) -> str:
     main = LOCALE[lang]
@@ -106,6 +127,8 @@ def build_page(src: Path, lang: str):
     text = text.replace('<html lang="es">', f'<html lang="{lang}">', 1)
     # 2) cuerpo traducido
     text = translate_body(text, T[lang])
+    # 2b) saludo estático del overlay de bienvenida (sin data-i18n; lo pone JS)
+    text = set_welcome_fallback(text, lang)
     # 3) title + meta (solo si hay META para el slug)
     if slug in META[lang]:
         title, desc = META[lang][slug]
