@@ -19,6 +19,12 @@ class CleanURLHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(ROOT), **kwargs)
 
+    def end_headers(self):
+        # Evita que el navegador cachee en desarrollo (así los cambios de
+        # CSS/JS/HTML se ven al recargar, sin refresco forzado).
+        self.send_header("Cache-Control", "no-store, max-age=0")
+        super().end_headers()
+
     def translate_path(self, path):
         full = super().translate_path(path)
         # /carpeta/  -> index.html
@@ -32,8 +38,15 @@ class CleanURLHandler(http.server.SimpleHTTPRequestHandler):
                 return full + ".html"
         return full
 
+
+class ThreadingHTTPServer(socketserver.ThreadingMixIn, http.server.HTTPServer):
+    """Multihilo: evita que las conexiones keep-alive de Chrome bloqueen el
+    servidor y dejen la pestaña cargando indefinidamente."""
+    daemon_threads = True
+    allow_reuse_address = True
+
 if __name__ == "__main__":
-    with socketserver.TCPServer(("", PORT), CleanURLHandler) as httpd:
+    with ThreadingHTTPServer(("", PORT), CleanURLHandler) as httpd:
         print(f"Sirviendo Heladería Luxer en  http://localhost:{PORT}/")
         print("Ctrl+C para parar.")
         try:

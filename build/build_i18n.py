@@ -152,12 +152,43 @@ def build_page(src: Path, lang: str):
     out.write_text(text, encoding="utf-8")
     return out.relative_to(ROOT)
 
+TITLE_RE = re.compile(r'<title>(.*?)</title>', re.DOTALL)
+DESC_RE = re.compile(r'<meta name="description" content="(.*?)">', re.DOTALL)
+
+def _extract_meta(path: Path):
+    """Devuelve (title, description) de un HTML, sin entidades HTML."""
+    t = path.read_text(encoding="utf-8")
+    tm = TITLE_RE.search(t)
+    dm = DESC_RE.search(t)
+    return (html.unescape(tm.group(1).strip()) if tm else "",
+            html.unescape(dm.group(1)) if dm else "")
+
+def generate_meta_js(pages):
+    """Genera meta_i18n.js con title/description por idioma y por slug, leídos
+    de las páginas ES (raíz) y de las generadas en /en y /fr. Lo usa el cliente
+    para cambiar <title> y meta description al cambiar de idioma sin recargar."""
+    meta = {"es": {}, "en": {}, "fr": {}}
+    for p in pages:
+        slug = slug_for(p)
+        title, desc = _extract_meta(p)
+        meta["es"][slug] = {"title": title, "description": desc}
+        for lang in ("en", "fr"):
+            lp = ROOT / lang / p.name
+            if lp.exists():
+                lt, ld = _extract_meta(lp)
+                meta[lang][slug] = {"title": lt, "description": ld}
+    out = ROOT / "meta_i18n.js"
+    out.write_text("window.META_I18N = " + json.dumps(meta, ensure_ascii=False) + ";\n",
+                   encoding="utf-8")
+    print("  generado meta_i18n.js")
+
 def main():
     pages = sorted(p for p in ROOT.glob("*.html"))
     for lang in ("en", "fr"):
         for p in pages:
             rel = build_page(p, lang)
             print(f"  generado {rel}")
+    generate_meta_js(pages)
 
 if __name__ == "__main__":
     main()

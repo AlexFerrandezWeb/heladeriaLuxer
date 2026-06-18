@@ -38,6 +38,10 @@
         <button class="nav__toggle" aria-label="Abrir menú">
             <span class="hamburger"></span>
         </button>
+        <a href="/en/" class="nav__home-link" aria-label="Volver al Inicio">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"></path><path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"></path></svg>
+            <span data-i18n="volver-inicio">Back to Home</span>
+        </a>
         <a href="/en/" class="nav__logo-link">
             <img src="/assets/logo.webp" alt="Logo Heladería Luxer" class="nav__logo">
         </a>
@@ -203,6 +207,16 @@
                 </div>
         </div>
     </main>
+    <!-- CTA reseñas Google · el enlace vive en una sola constante; sustituir por el g.page/r/.../review cuando esté disponible -->
+    <section class="review-cta" aria-labelledby="review-cta-title">
+        <div class="review-cta__inner">
+            <div class="review-cta__stars" aria-hidden="true">★★★★★</div>
+            <h2 class="review-cta__title" id="review-cta-title" data-i18n="resena-titulo">Made it this far? 🍦</h2>
+            <p class="review-cta__text" data-i18n="resena-texto">Your opinion means the world to us. If you enjoyed Luxer, leave us a review on Google and help us keep sweetening Lo Pagán.</p>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Helader%C3%ADa+Luxer+Lo+Pag%C3%A1n+San+Pedro+del+Pinatar" class="review-cta__btn" target="_blank" rel="noopener" data-i18n="resena-boton">Leave a Google review</a>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="footer__container">
             <div class="footer__section">
@@ -244,6 +258,7 @@
       <button id="accept-cookies" data-i18n="cookie-aceptar">Accept</button>
     </div>
     <script src="/translations.js"></script>
+    <script src="/meta_i18n.js"></script>
     <script src="/script.js"></script>
     <script src="/favicon.js"></script>
 </body>

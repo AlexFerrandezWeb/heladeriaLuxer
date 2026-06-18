@@ -119,6 +119,12 @@ h1, h2, h3, h4, h5, h6 {
     pointer-events: none;
 }
 
+/* Enlace "Volver al Inicio": cumple la función del logo cuando este se oculta
+   al compactar la nav. Solo visible en móvil (donde aparece la hamburguesa). */
+.nav__home-link {
+    display: none;
+}
+
 .nav__list {
     display: flex;
     gap: 2rem;
@@ -221,6 +227,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .language-toggle__btn {
+    position: relative;
+    z-index: 1;
     background: none;
     border: none;
     padding: 0.3rem 0.8rem;
@@ -228,19 +236,37 @@ h1, h2, h3, h4, h5, h6 {
     font-family: inherit;
     font-size: 1rem;
     color: #181818 !important;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
     border-radius: 15px;
 }
 
-.language-toggle__btn:hover {
-    color: var(--catskill-white);
-    background: var(--aquamarine-blue);
+.language-toggle__btn:not(.active):hover {
+    background: rgba(110, 222, 201, 0.18);
 }
 
 .language-toggle__btn.active {
+    font-weight: 600;
+}
+
+/* Pastilla mint que se desliza hasta el idioma activo. JS fija su
+   posición/tamaño (left/top/width/height); la transición la anima. */
+.language-toggle__indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-radius: 15px;
     background: var(--aquamarine-blue);
-    color: var(--catskill-white);
     box-shadow: 0 0 12px var(--aquamarine-blue);
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+    transition: left 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+                top 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+                width 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+                height 0.35s ease,
+                opacity 0.2s ease;
 }
 
 @media (max-width: 768px) {
@@ -285,21 +311,72 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .nav__logo {
-        max-width: 100px;
+        max-width: 86px;
+        width: 86px;
+        height: 86px;
         margin: 0.5rem auto;
+    }
+
+    .nav__home-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        position: absolute;
+        left: 4.5rem;
+        top: 50%;
+        z-index: 1002;
+        text-decoration: none;
+        color: #181818 !important;
+        font-family: inherit;
+        font-weight: 600;
+        font-size: 0.78rem;
+        white-space: nowrap;
+        background: var(--catskill-white);
+        border: 2px solid var(--aquamarine-blue);
+        border-radius: 20px;
+        padding: 0.26rem 0.6rem;
+        box-shadow: 0 0 8px rgba(110, 222, 201, 0.2);
+        transform: translateY(-50%);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+    }
+
+    .nav__home-link svg {
+        width: 15px;
+        height: 15px;
+        flex-shrink: 0;
+        color: var(--aquamarine-blue);
+    }
+
+    /* La regla global '.nav a { border-bottom: none !important }' tiene más
+       especificidad que '.nav__home-link', así que recuperamos el borde
+       inferior con un selector más específico. */
+    .nav a.nav__home-link {
+        border-bottom: 2px solid var(--aquamarine-blue) !important;
+    }
+
+    .nav__home-link:hover {
+        background: rgba(110, 222, 201, 0.18);
+    }
+
+    .nav.nav--compact .nav__home-link {
+        opacity: 1;
+        pointer-events: auto;
+        transition: opacity 0.5s ease 0.6s;
     }
 
     .language-toggle {
         top: 50%;
         transform: translateY(-50%);
-        padding: 0.2rem;
+        padding: 0.15rem;
         border-width: 2px;
         right: 1rem;
     }
 
     .language-toggle__btn {
-        padding: 0.35rem 0.6rem;
-        font-size: 0.85rem;
+        padding: 0.26rem 0.45rem;
+        font-size: 0.76rem;
     }
 
     .nav__list {
@@ -400,14 +477,33 @@ h1, h2, h3, h4, h5, h6 {
         transform: translateY(5px);
     }
 
+    .nav__logo {
+        max-width: 76px;
+        width: 76px;
+        height: 76px;
+    }
+
+    .nav__home-link {
+        left: 3.8rem;
+        font-size: 0.72rem;
+        gap: 0.3rem;
+        padding: 0.26rem 0.55rem;
+    }
+
+    .nav__home-link svg {
+        width: 13px;
+        height: 13px;
+    }
+
     .language-toggle {
-        padding: 0.18rem;
+        padding: 0.13rem;
         right: 0.8rem;
     }
 
     .language-toggle__btn {
-        padding: 0.3rem 0.55rem;
-        font-size: 0.8rem;
+        padding: 0.24rem 0.4rem;
+        font-size: 0.72rem;
+        border-radius: 13px;
     }
 
     .main {
@@ -535,6 +631,13 @@ h2[data-i18n="tes"] {
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+}
+
+/* Imagen de producto sobre fondo blanco (p. ej. granizados): se muestra
+   entera sin recortar, rellenando los laterales con blanco. */
+.category-card__img--contain {
+    object-fit: contain;
+    background: #ffffff;
 }
 
 .category-card:hover .category-card__img {
@@ -1233,6 +1336,229 @@ link[rel="icon"] {
 .products-grid .product-card {
   width: 100%;
 }
+
+/* --- Sabores compactos: franja de precios única + tarjetas mini --- */
+.flavors-section {
+    position: relative;
+}
+
+/* Banda máscara fija: del mismo color que el fondo y a ancho completo.
+   Mantiene la tarjeta de precios fija arriba y, sobre todo, oculta las
+   tarjetas de helado que pasan por detrás (no asoman sobre la franja).
+   El 'top' lo ajusta el JS a la altura real de la nav en cada momento. */
+.legend-sticky {
+    position: sticky;
+    top: 104px;
+    z-index: 900;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding: 12px 1rem 14px;
+    background: var(--aquamarine-blue);
+}
+
+@media (max-width: 768px) {
+    .legend-sticky {
+        top: 64px;
+    }
+}
+
+.price-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0.8rem 1.2rem;
+    background: var(--catskill-white);
+    border: 2px solid var(--aquamarine-blue);
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.price-legend__label {
+    font-family: 'Lobster Two', Arial, Helvetica, sans-serif;
+    font-size: 1.3rem;
+    color: var(--charm);
+    margin-right: 0.3rem;
+}
+
+.price-legend__item {
+    font-size: 1rem;
+    color: #181818;
+}
+
+.price-legend__item strong {
+    color: var(--charm);
+}
+
+/* Aviso de que se pueden combinar sabores (línea propia bajo los precios) */
+.price-legend__combo {
+    flex-basis: 100%;
+    text-align: center;
+    margin-top: 0.4rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--aquamarine-blue);
+    font-family: 'Lobster Two', Arial, Helvetica, sans-serif;
+    font-size: 1.15rem;
+    color: var(--charm);
+}
+
+/* CTA "Elige tus toppings": fila propia bajo los precios con un botón centrado,
+   reutilizando el estilo de botón del sitio (.product-card__button) para que
+   se vea claramente clicable. */
+.price-legend__cta-row {
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.05rem;
+    padding-top: 0.15rem;
+    border-top: 1px dashed var(--aquamarine-blue);
+}
+
+/* Al saltar al ancla #toppings (botón de la tarjeta de precios), deja un
+   margen superior para que el título no quede tapado por la nav fija y caiga
+   con un hueco limpio bajo la barra. */
+#toppings {
+    scroll-margin-top: 130px;
+}
+
+@media (max-width: 768px) {
+    #toppings {
+        scroll-margin-top: 80px;
+    }
+}
+
+/* Mensaje "combina los sabores" sobre el botón de toppings (helados) */
+.price-legend__combo-text {
+    font-family: 'Lobster Two', Arial, Helvetica, sans-serif;
+    font-size: 1.15rem;
+    color: var(--charm);
+    text-align: center;
+}
+
+.price-legend__cta {
+    text-decoration: none;
+    align-self: center;
+    margin-top: 0 !important;
+    padding: 0.3rem 0.75rem !important;
+    font-size: 0.62rem;
+    white-space: nowrap;
+}
+
+/* Cuadrícula de sabores más densa (4 columnas) y tarjetas bajas */
+.products-grid--flavors {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1100px;
+    gap: 16px 14px;
+    margin-top: 0;
+}
+
+.products-grid--flavors .product-card__image {
+    height: auto;
+    aspect-ratio: 1 / 1;
+}
+
+.products-grid--flavors .product-card__content {
+    padding: 0.6rem 0.5rem;
+    align-items: center;
+    text-align: center;
+}
+
+.products-grid--flavors .product-card__title {
+    font-size: 1.1rem;
+}
+
+/* Precio especial (p. ej. granizados Canario / Blanco y negro): línea
+   compacta bajo el nombre en las tarjetas mini. */
+.product-card__price-mini {
+    margin: 0.15rem 0 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--charm);
+}
+
+@media (max-width: 900px) {
+    .products-grid--flavors {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .products-grid--flavors {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Cuadrícula de Gofres: tarjetas compactas (nombre + precio). Igual que la
+   normal en columnas (3 escritorio, 2 tablet) pero en móvil mantiene 2 en
+   lugar de bajar a 1. El estilo compacto de las tarjetas se aplica en todos
+   los tamaños. */
+@media (max-width: 600px) {
+    .products-grid--two {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Igual que la cuadrícula normal (3 col escritorio, 2 en tablet) pero que en
+   móvil mantenga 2 columnas en lugar de bajar a 1 (p. ej. Toppings). En móvil
+   además compacta las tarjetas (imagen cuadrada, contenido centrado y título
+   más pequeño) para que no queden tan altas. El escritorio no cambia. */
+@media (max-width: 600px) {
+    .products-grid--two-mobile {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .products-grid--two-mobile .product-card__image {
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+    .products-grid--two-mobile .product-card__content {
+        padding: 0.6rem 0.5rem;
+        gap: 0.3rem;
+        align-items: center;
+        text-align: center;
+    }
+    .products-grid--two-mobile .product-card__title {
+        font-size: 1rem;
+    }
+    .products-grid--two-mobile .product-card__price {
+        text-align: center;
+    }
+}
+
+/* Tarjetas más bajas: imagen proporcional, contenido centrado y compacto */
+.products-grid--two .product-card__image {
+    height: auto;
+    aspect-ratio: 4 / 3;
+}
+
+.products-grid--two .product-card__content {
+    padding: 0.7rem 0.6rem;
+    gap: 0.35rem;
+    align-items: center;
+    text-align: center;
+}
+
+.products-grid--two .product-card__title {
+    font-size: 1.15rem;
+}
+
+.products-grid--two .product-card__price {
+    text-align: center;
+}
+
+/* Botón "Elige tu salsa" más pequeño para no alargar la tarjeta */
+.products-grid--two .product-card__button {
+    padding: 0.35rem 0.85rem !important;
+    font-size: 0.8rem;
+    margin-top: 0.2rem !important;
+    white-space: nowrap;
+    align-self: center;
+}
+
 h1.main__title {
     color: #fff;
 }
@@ -1912,5 +2238,95 @@ body {
     .welcome.is-melting,
     .welcome.is-melting .welcome__inner {
         animation: none;
+    }
+}
+
+/* ===== CTA de reseñas (Google) ===== */
+.review-cta {
+    max-width: 1200px;
+    margin: 4rem auto 0;
+    padding: 0 2rem;
+}
+
+.review-cta__inner {
+    background: var(--catskill-white);
+    border: 2px solid var(--aquamarine-blue);
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(45, 58, 74, 0.12);
+    padding: 2.5rem 2rem;
+    text-align: center;
+}
+
+.review-cta__stars {
+    color: #ffc83d;
+    font-size: 1.7rem;
+    letter-spacing: 5px;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+    text-shadow: 0 1px 2px rgba(45, 58, 74, 0.15);
+}
+
+.review-cta__title {
+    color: var(--charm);
+    font-size: 2rem;
+    margin: 0 0 0.6rem;
+}
+
+.review-cta__text {
+    color: var(--text-color);
+    max-width: 560px;
+    margin: 0 auto 1.6rem;
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+
+.review-cta__btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--aquamarine-blue), var(--charm));
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 999px;
+    padding: 0.9rem 2.2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(115, 208, 208, 0.45);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.review-cta__btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(115, 208, 208, 0.55);
+}
+
+@media (max-width: 768px) {
+    .review-cta {
+        margin-top: 2.5rem;
+        padding: 0 1rem;
+    }
+
+    .review-cta__inner {
+        padding: 1.5rem 1.1rem;
+        border-radius: 14px;
+    }
+
+    .review-cta__stars {
+        font-size: 1.4rem;
+        letter-spacing: 3px;
+        margin-bottom: 0.5rem;
+    }
+
+    .review-cta__title {
+        font-size: 1.45rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .review-cta__text {
+        font-size: 0.95rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .review-cta__btn {
+        padding: 0.75rem 1.6rem;
+        font-size: 1rem;
     }
 }

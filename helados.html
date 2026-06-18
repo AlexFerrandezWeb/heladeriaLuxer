@@ -38,6 +38,10 @@
         <button class="nav__toggle" aria-label="Abrir menú">
             <span class="hamburger"></span>
         </button>
+        <a href="/" class="nav__home-link" aria-label="Volver al Inicio">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"></path><path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"></path></svg>
+            <span data-i18n="volver-inicio">Volver al Inicio</span>
+        </a>
         <a href="/" class="nav__logo-link">
             <img src="/assets/logo.webp" alt="Logo Heladería Luxer - Los mejores helados en Lo Pagán y San Pedro del Pinatar" class="nav__logo">
         </a>
@@ -57,8 +61,21 @@
     </nav>
 
     <main class="main">
-        <h1 class="main__title" data-i18n="helados-sabores">Helados - Sabores</h1>
-        <div class="products-grid">
+        <h1 class="main__title" data-i18n="helados-sabores">Helados</h1>
+        <section class="flavors-section">
+        <div class="legend-sticky">
+        <div class="price-legend">
+            <span class="price-legend__label" data-i18n="precio-por-bola">Precio por bola</span>
+            <span class="price-legend__item"><span data-i18n="bola-pequena">Pequeña</span> <strong>2.50€</strong></span>
+            <span class="price-legend__item"><span data-i18n="bola-normal">Normal</span> <strong>3.00€</strong></span>
+            <span class="price-legend__item"><span data-i18n="bola-grande">Grande</span> <strong>3.50€</strong></span>
+            <div class="price-legend__cta-row">
+                <span class="price-legend__combo-text" data-i18n="combina-sabores">🍨 ¡Combina los sabores que quieras!</span>
+                <a href="#toppings" class="product-card__button price-legend__cta" data-i18n="elige-salsa-combo">Tus toppings favoritos por 0.50€ →</a>
+            </div>
+        </div>
+        </div>
+        <div class="products-grid products-grid--flavors">
                 <div class="product-card">
                     <div class="product-card__image">
                         <img loading="lazy" decoding="async" src="/assets/helado1.webp" alt="Helado de Vainilla artesanal en Lo Pagán" class="product-card__img">
@@ -66,9 +83,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="vainilla">Vainilla de Madagascar</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
 
@@ -78,9 +92,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="chocolate">Chocolate</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
 
@@ -90,9 +101,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="fresa">Fresa</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
 
@@ -102,9 +110,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="pistacho">Pistacho</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
 
@@ -115,9 +120,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="limon">Limón</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
 
@@ -127,9 +129,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="menta">Menta</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -138,9 +137,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="nata">Nata</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -150,9 +146,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="leche-merengada">Leche merengada</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -164,9 +157,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="turron">Turrón</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -178,9 +168,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="ron-pasas">Ron con pasas</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -192,9 +179,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="tuti-fruti">Tuti fruti</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -206,9 +190,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="mantecado">Mantecado</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -220,9 +201,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="stracciatella">Stracciatella</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -234,9 +212,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="vainilla-con-cookies">Vainilla con cookies</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -248,9 +223,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="cafe">Café</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -262,9 +234,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="dulce-de-leche">Dulce de leche</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -276,9 +245,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="kinder">Kinder</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -290,9 +256,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="kinder-bueno">Kinder Bueno</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -304,9 +267,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="oreo">Oreo</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card product-card--unavailable">
@@ -316,9 +276,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="nube">Nube</h2>
-                        <p class="product-card__price" style="visibility:hidden;">Pequeña: 2.50€</p>
-                        <p class="product-card__price" style="visibility:hidden;">Normal: 3.00€</p>
-                        <p class="product-card__price" style="visibility:hidden;">Grande: 3.50€</p>
                     </div>
                 </div>
                 <div class="product-card product-card--unavailable">
@@ -328,9 +285,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="chicle">Chicle</h2>
-                        <p class="product-card__price" style="visibility:hidden;">Pequeña: 2.50€</p>
-                        <p class="product-card__price" style="visibility:hidden;">Normal: 3.00€</p>
-                        <p class="product-card__price" style="visibility:hidden;">Grande: 3.50€</p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -343,9 +297,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="mango">Mango</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -358,9 +309,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="mandarina">Mandarina</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -372,9 +320,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="yogurt">Yogurt</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -386,9 +331,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="coco">Coco</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -400,18 +342,12 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="chocolate-dubai">Chocolate de Dubaí</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-pequena">Pequeña</span><span class="price-value">2.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-normal">Normal</span><span class="price-value">3.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="bola-grande">Grande</span><span class="price-value">3.50€</span></p>
                     </div>
                 </div>
             </div>
         
 
-        <!-- Franja promocional -->
-        <div class="promotional-banner">
-            <h2 class="promotional-banner__text" data-i18n="mezcla-sabores">MEZCLA TUS SABORES FAVORITOS Y CREA LA COMBINACIÓN PERFECTA</h2>
-        </div>
+        </section>
 
         <!-- Sección Copas de Helado -->
         <section class="icecream-cups">
@@ -526,7 +462,111 @@
             </div>
         </section>
         <!-- Fin sección Copas de Helado -->
+
+        <!-- Sección Toppings -->
+        <h2 class="main__title" data-i18n="toppings" id="toppings">Toppings</h2>
+        <div class="products-grid products-grid--two-mobile">
+                <div class="product-card">
+                    <div class="product-card__image">
+                        <img loading="lazy" decoding="async" src="/assets/topping1.webp" alt="Topping de Chocolate en Lo Pagán" class="product-card__img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="no-image-placeholder" style="display: none; text-align: center; padding: 20px; color: #666; font-style: italic;">
+                            Imagen no disponible
+                        </div>
+                    </div>
+                    <div class="product-card__content">
+                        <h2 class="product-card__title" data-i18n="topping-lotus">Trozos de Lotus</h2>
+                        <p class="product-card__price">0.50€</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-card__image">
+                        <img loading="lazy" decoding="async" src="/assets/topping2.webp" alt="Topping de Frutas en San Pedro del Pinatar" class="product-card__img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="no-image-placeholder" style="display: none; text-align: center; padding: 20px; color: #666; font-style: italic;">
+                            Imagen no disponible
+                        </div>
+                    </div>
+                    <div class="product-card__content">
+                        <h2 class="product-card__title" data-i18n="topping-oreo">Trozos de Oreo</h2>
+                        <p class="product-card__price">0.50€</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-card__image">
+                        <img loading="lazy" decoding="async" src="/assets/topping3.webp" alt="Topping de Nata en Lo Pagán" class="product-card__img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="no-image-placeholder" style="display: none; text-align: center; padding: 20px; color: #666; font-style: italic;">
+                            Imagen no disponible
+                        </div>
+                    </div>
+                    <div class="product-card__content">
+                        <h2 class="product-card__title" data-i18n="topping-filipinos">Trozos de filipinos</h2>
+                        <p class="product-card__price">0.50€</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-card__image">
+                        <img loading="lazy" decoding="async" src="/assets/topping4.webp" alt="Topping de Galletas en San Pedro del Pinatar" class="product-card__img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="no-image-placeholder" style="display: none; text-align: center; padding: 20px; color: #666; font-style: italic;">
+                            Imagen no disponible
+                        </div>
+                    </div>
+                    <div class="product-card__content">
+                        <h2 class="product-card__title" data-i18n="topping-kinder">Salsa Kinder</h2>
+                        <p class="product-card__price">0.50€</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-card__image">
+                        <img loading="lazy" decoding="async" src="/assets/topping5.webp" alt="Topping de Caramelo en Lo Pagán" class="product-card__img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="no-image-placeholder" style="display: none; text-align: center; padding: 20px; color: #666; font-style: italic;">
+                            Imagen no disponible
+                        </div>
+                    </div>
+                    <div class="product-card__content">
+                        <h2 class="product-card__title" data-i18n="topping-nocilla">Salsa Nocilla</h2>
+                        <p class="product-card__price">0.50€</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-card__image">
+                        <img loading="lazy" decoding="async" src="/assets/topping6.webp" alt="Topping de Caramelo en Lo Pagán" class="product-card__img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="no-image-placeholder" style="display: none; text-align: center; padding: 20px; color: #666; font-style: italic;">
+                            Imagen no disponible
+                        </div>
+                    </div>
+                    <div class="product-card__content">
+                        <h2 class="product-card__title" data-i18n="topping-pistacho">Salsa Pistacho</h2>
+                        <p class="product-card__price">0.50€</p>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-card__image">
+                        <img loading="lazy" decoding="async" src="/assets/topping7.webp" alt="Topping de Caramelo en San Pedro del Pinatar" class="product-card__img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="no-image-placeholder" style="display: none; text-align: center; padding: 20px; color: #666; font-style: italic;">
+                            Imagen no disponible
+                        </div>
+                    </div>
+                    <div class="product-card__content">
+                        <h2 class="product-card__title" data-i18n="topping-lotus-salsa">Salsa de Lotus</h2>
+                        <p class="product-card__price">0.50€</p>
+                    </div>
+                </div>
+        </div>
     </main>
+
+    <!-- CTA reseñas Google · el enlace vive en una sola constante; sustituir por el g.page/r/.../review cuando esté disponible -->
+    <section class="review-cta" aria-labelledby="review-cta-title">
+        <div class="review-cta__inner">
+            <div class="review-cta__stars" aria-hidden="true">★★★★★</div>
+            <h2 class="review-cta__title" id="review-cta-title" data-i18n="resena-titulo">¿Has llegado hasta aquí? 🍦</h2>
+            <p class="review-cta__text" data-i18n="resena-texto">Tu opinión nos importa muchísimo. Si te ha gustado Luxer, déjanos tu reseña en Google y ayúdanos a seguir endulzando Lo Pagán.</p>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Helader%C3%ADa+Luxer+Lo+Pag%C3%A1n+San+Pedro+del+Pinatar" class="review-cta__btn" target="_blank" rel="noopener" data-i18n="resena-boton">Dejar reseña en Google</a>
+        </div>
+    </section>
 
     <footer class="footer">
         <div class="footer__container">
@@ -574,6 +614,7 @@
     </div>
 
     <script src="/translations.js"></script>
+    <script src="/meta_i18n.js"></script>
     <script src="/script.js"></script>
 </body>
 </html> 

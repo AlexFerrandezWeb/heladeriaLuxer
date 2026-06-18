@@ -26,6 +26,33 @@ document.addEventListener('DOMContentLoaded', () => {
         return slug ? prefix + '/' + slug : prefix + '/';
     }
 
+    // Reescribe los enlaces internos al idioma elegido para que el menú,
+    // el logo, el footer, etc. lleven a la versión correcta sin recargar.
+    function relocalizeLinks(lang) {
+        document.querySelectorAll('a[href^="/"]').forEach(a => {
+            let href = a.getAttribute('href');
+            if (!href || href.startsWith('/assets') || href.startsWith('//')) return;
+            // quita el prefijo de idioma actual si lo tuviera
+            href = href.replace(/^\/(en|fr)(\/|$)/, '/');
+            // añade el prefijo del idioma destino (es no lleva prefijo)
+            if (lang !== 'es') {
+                href = href === '/' ? '/' + lang + '/' : '/' + lang + href;
+            }
+            a.setAttribute('href', href);
+        });
+    }
+
+    // Actualiza el <title> y la meta description al idioma elegido (datos
+    // generados por el build en meta_i18n.js). Así también cambia la pestaña.
+    function applyMeta(lang) {
+        const data = window.META_I18N && window.META_I18N[lang];
+        const m = data && data[getPageSlug()];
+        if (!m) return;
+        if (m.title) document.title = m.title;
+        const desc = document.querySelector('meta[name="description"]');
+        if (desc && m.description) desc.setAttribute('content', m.description);
+    }
+
     // Aplica los textos del idioma (coherente con el HTML ya traducido).
     // El <title> lo deja el HTML estático (optimizado para SEO por idioma).
     function applyLanguage(lang) {
@@ -51,6 +78,41 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('preferredLanguage', currentLang);
     applyLanguage(currentLang);
 
+    // Pastilla deslizante que resalta el idioma activo
+    const langToggle = document.querySelector('.language-toggle');
+    let langIndicator = null;
+    if (langToggle && languageButtons.length) {
+        langIndicator = document.createElement('span');
+        langIndicator.className = 'language-toggle__indicator';
+        langIndicator.setAttribute('aria-hidden', 'true');
+        langToggle.prepend(langIndicator);
+    }
+
+    function activeLangBtn() {
+        return document.querySelector('.language-toggle__btn.active')
+            || document.querySelector('.language-toggle__btn[data-lang="' + getCurrentLang() + '"]');
+    }
+
+    // Coloca la pastilla sobre un botón. animate=false la sitúa sin transición.
+    function moveLangIndicator(btn, animate) {
+        if (!langIndicator || !btn) return;
+        if (!animate) langIndicator.style.transition = 'none';
+        langIndicator.style.left = btn.offsetLeft + 'px';
+        langIndicator.style.top = btn.offsetTop + 'px';
+        langIndicator.style.width = btn.offsetWidth + 'px';
+        langIndicator.style.height = btn.offsetHeight + 'px';
+        langIndicator.style.opacity = '1';
+        if (!animate) {
+            void langIndicator.offsetWidth; // fuerza reflow
+            langIndicator.style.transition = '';
+        }
+    }
+
+    // Posición inicial (sin animación) y recolocación al redimensionar / cargar
+    requestAnimationFrame(() => moveLangIndicator(activeLangBtn(), false));
+    window.addEventListener('load', () => moveLangIndicator(activeLangBtn(), false));
+    window.addEventListener('resize', () => moveLangIndicator(activeLangBtn(), false));
+
     navToggle.addEventListener('click', () => {
         navToggle.classList.toggle('active');
         navList.classList.toggle('active');
@@ -65,18 +127,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Cambio de idioma: navegar a la versión traducida de la misma página
+    // Cambio de idioma sin recargar (traduce en sitio + actualiza la URL)
     languageButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const lang = btn.getAttribute('data-lang');
             if (!SUPPORTED_LANGS.includes(lang)) return;
             localStorage.setItem('preferredLanguage', lang);
-            if (lang === getCurrentLang()) {
-                applyLanguage(lang);
-            } else {
-                window.location.href = urlForLang(lang);
+            const changed = lang !== getCurrentLang();
+            // Cambio de idioma sin recargar: traduce textos, reescribe los
+            // enlaces internos y actualiza la URL con history.pushState.
+            applyLanguage(lang);
+            relocalizeLinks(lang);
+            applyMeta(lang);
+            if (changed) {
+                history.pushState({ lang }, '', urlForLang(lang));
             }
+            moveLangIndicator(btn, true);
         });
+    });
+
+    // Botón atrás/adelante del navegador: reaplica el idioma de la URL
+    window.addEventListener('popstate', () => {
+        const lang = getCurrentLang();
+        applyLanguage(lang);
+        relocalizeLinks(lang);
+        applyMeta(lang);
+        moveLangIndicator(activeLangBtn(), true);
     });
 
     // Carrusel
@@ -224,18 +300,50 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(toTop);
     toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    // Reducción del nav al hacer scroll SOLO hacia abajo, y restaurar al hacer scroll hacia arriba
+    // La nav solo está agrandada (con logo) cuando se está arriba del todo.
+    // En cuanto se baja un poco, se compacta y se mantiene así hasta volver
+    // al principio (no vuelve a crecer al hacer scroll hacia arriba).
     const nav = document.querySelector('.nav');
-    let lastScrollY = window.scrollY;
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 60 && window.scrollY > lastScrollY) {
+        if (window.scrollY > 60) {
             nav.classList.add('nav--compact');
-        } else if (window.scrollY < lastScrollY) {
+        } else {
             nav.classList.remove('nav--compact');
         }
-        lastScrollY = window.scrollY;
         toTop.classList.toggle('is-visible', window.scrollY > 400);
     });
+
+    // La franja de precios (sticky) se pega justo debajo de la nav. Como la
+    // nav cambia de altura al hacer scroll (con transición de ~1.2s), aquí
+    // sincronizamos su 'top' con la altura real de la nav en cada momento,
+    // siguiéndola también mientras la barra se agranda/encoge.
+    const priceLegend = document.querySelector('.legend-sticky');
+    if (priceLegend) {
+        const GAP = 0;
+        let followId = null;
+        let stopTimer = null;
+        const syncLegendTop = () => {
+            priceLegend.style.top = (nav.offsetHeight + GAP) + 'px';
+        };
+        const follow = () => {
+            syncLegendTop();
+            followId = requestAnimationFrame(follow);
+        };
+        const stopFollow = () => {
+            if (followId) { cancelAnimationFrame(followId); followId = null; }
+            syncLegendTop();
+        };
+        syncLegendTop();
+        window.addEventListener('load', syncLegendTop);
+        window.addEventListener('resize', syncLegendTop);
+        window.addEventListener('scroll', syncLegendTop, { passive: true });
+        // Mientras la nav anima su tamaño, seguimos su altura cada frame
+        nav.addEventListener('transitionrun', () => {
+            if (!followId) follow();
+            clearTimeout(stopTimer);
+            stopTimer = setTimeout(stopFollow, 1400);
+        });
+    }
 
     // Animación de aparición de tarjetas al hacer scroll
     // En la portada NO se anima: las 6 categorías se muestran siempre, sin scroll.

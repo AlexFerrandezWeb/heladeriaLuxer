@@ -38,6 +38,10 @@
         <button class="nav__toggle" aria-label="Abrir menú">
             <span class="hamburger"></span>
         </button>
+        <a href="/" class="nav__home-link" aria-label="Volver al Inicio">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"></path><path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"></path></svg>
+            <span data-i18n="volver-inicio">Volver al Inicio</span>
+        </a>
         <a href="/" class="nav__logo-link">
             <img src="/assets/logo.webp" alt="Logo Heladería Luxer - Los mejores helados en Lo Pagán y San Pedro del Pinatar" class="nav__logo">
         </a>
@@ -58,7 +62,17 @@
 
     <main class="main">
         <h1 class="main__title" data-i18n="granizados">Granizados</h1>
-        <div class="products-grid">
+        <section class="flavors-section">
+        <div class="legend-sticky">
+        <div class="price-legend">
+            <span class="price-legend__label" data-i18n="precios-titulo">Precios</span>
+            <span class="price-legend__item"><span data-i18n="precio-normal">Normal</span> <strong>2.80€</strong></span>
+            <span class="price-legend__item"><span data-i18n="precio-normal-bola">Normal con bola</span> <strong>4.50€</strong></span>
+            <span class="price-legend__item"><span data-i18n="precio-grande">Grande</span> <strong>3.50€</strong></span>
+            <span class="price-legend__item"><span data-i18n="precio-grande-bola">Grande con bola</span> <strong>5.50€</strong></span>
+        </div>
+        </div>
+        <div class="products-grid products-grid--flavors">
                 <div class="product-card">
                     <div class="product-card__image">
                         <div class="product-label" data-i18n="cosecha-propia">Cosecha propia</div>
@@ -66,10 +80,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="limon">Limón</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal">Normal</span><span class="price-value">2.80€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal-bola">Normal con bola</span><span class="price-value">4.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande">Grande</span><span class="price-value">3.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande-bola">Grande con bola</span><span class="price-value">5.50€</span></p>
                     </div>
                 </div>
 
@@ -80,10 +90,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="naranja">Naranja</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal">Normal</span><span class="price-value">2.80€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal-bola">Normal con bola</span><span class="price-value">4.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande">Grande</span><span class="price-value">3.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande-bola">Grande con bola</span><span class="price-value">5.50€</span></p>
                     </div>
                 </div>
 
@@ -93,10 +99,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="mojito">Mojito (sin alcohol)</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal">Normal</span><span class="price-value">2.80€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal-bola">Normal con bola</span><span class="price-value">4.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande">Grande</span><span class="price-value">3.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande-bola">Grande con bola</span><span class="price-value">5.50€</span></p>
                     </div>
                 </div>
 
@@ -106,10 +108,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="horchata-almendras">Horchata de almendras</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal">Normal</span><span class="price-value">2.80€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal-bola">Normal con bola</span><span class="price-value">4.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande">Grande</span><span class="price-value">3.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande-bola">Grande con bola</span><span class="price-value">5.50€</span></p>
                     </div>
                 </div>
 
@@ -119,10 +117,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="horchata-chufa">Horchata de chufa</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal">Normal</span><span class="price-value">2.80€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal-bola">Normal con bola</span><span class="price-value">4.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande">Grande</span><span class="price-value">3.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande-bola">Grande con bola</span><span class="price-value">5.50€</span></p>
                     </div>
                 </div>
 
@@ -133,10 +127,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="leche">Leche</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal">Normal</span><span class="price-value">2.80€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal-bola">Normal con bola</span><span class="price-value">4.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande">Grande</span><span class="price-value">3.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande-bola">Grande con bola</span><span class="price-value">5.50€</span></p>
                     </div>
                 </div>
 
@@ -146,10 +136,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="fresa">Fresa</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal">Normal</span><span class="price-value">2.80€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal-bola">Normal con bola</span><span class="price-value">4.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande">Grande</span><span class="price-value">3.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande-bola">Grande con bola</span><span class="price-value">5.50€</span></p>
                     </div>
                 </div>
 
@@ -159,10 +145,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="cafe">Café</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal">Normal</span><span class="price-value">2.80€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal-bola">Normal con bola</span><span class="price-value">4.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande">Grande</span><span class="price-value">3.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande-bola">Grande con bola</span><span class="price-value">5.50€</span></p>
                     </div>
                 </div>
 
@@ -172,10 +154,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="cebada-cafe-descafeinado">Cebada o café descafeinado</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal">Normal</span><span class="price-value">2.80€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal-bola">Normal con bola</span><span class="price-value">4.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande">Grande</span><span class="price-value">3.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande-bola">Grande con bola</span><span class="price-value">5.50€</span></p>
                     </div>
                 </div>
 
@@ -185,10 +163,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="maracuyá-mango">Maracuyá con mango</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal">Normal</span><span class="price-value">2.80€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal-bola">Normal con bola</span><span class="price-value">4.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande">Grande</span><span class="price-value">3.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande-bola">Grande con bola</span><span class="price-value">5.50€</span></p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -197,8 +171,7 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="canario">Canario</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal-especial">Normal</span><span class="price-value">4.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande-especial">Grande</span><span class="price-value">5.50€</span></p>
+                        <p class="product-card__price-mini"><span data-i18n="precio-normal-especial">Normal</span> 4.50€ · <span data-i18n="precio-grande-especial">Grande</span> 5.50€</p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -207,16 +180,11 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="blanco-y-negro">Blanco y negro</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-normal-especial">Normal</span><span class="price-value">4.50€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="precio-grande-especial">Grande</span><span class="price-value">5.50€</span></p>
+                        <p class="product-card__price-mini"><span data-i18n="precio-normal-especial">Normal</span> 4.50€ · <span data-i18n="precio-grande-especial">Grande</span> 5.50€</p>
                     </div>
                 </div>
             </div>
-
-        <!-- Franja promocional -->
-        <div class="promotional-banner">
-            <h2 class="promotional-banner__text" data-i18n="mezcla-sabores">MEZCLA TUS SABORES FAVORITOS Y CREA LA COMBINACIÓN PERFECTA</h2>
-        </div>
+        </section>
 
         <!-- Sección Granizados con Alcohol -->
         <section class="category-block">
@@ -240,6 +208,16 @@
         </section>
         <!-- Fin sección Granizados con Alcohol -->
     </main>
+
+    <!-- CTA reseñas Google · el enlace vive en una sola constante; sustituir por el g.page/r/.../review cuando esté disponible -->
+    <section class="review-cta" aria-labelledby="review-cta-title">
+        <div class="review-cta__inner">
+            <div class="review-cta__stars" aria-hidden="true">★★★★★</div>
+            <h2 class="review-cta__title" id="review-cta-title" data-i18n="resena-titulo">¿Has llegado hasta aquí? 🍦</h2>
+            <p class="review-cta__text" data-i18n="resena-texto">Tu opinión nos importa muchísimo. Si te ha gustado Luxer, déjanos tu reseña en Google y ayúdanos a seguir endulzando Lo Pagán.</p>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Helader%C3%ADa+Luxer+Lo+Pag%C3%A1n+San+Pedro+del+Pinatar" class="review-cta__btn" target="_blank" rel="noopener" data-i18n="resena-boton">Dejar reseña en Google</a>
+        </div>
+    </section>
 
     <footer class="footer">
         <div class="footer__container">
@@ -287,6 +265,7 @@
     </div>
 
     <script src="/translations.js"></script>
+    <script src="/meta_i18n.js"></script>
     <script src="/script.js"></script>
 </body>
 </html> 

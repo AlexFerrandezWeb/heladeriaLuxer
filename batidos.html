@@ -38,6 +38,10 @@
         <button class="nav__toggle" aria-label="Abrir menú">
             <span class="hamburger"></span>
         </button>
+        <a href="/" class="nav__home-link" aria-label="Volver al Inicio">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"></path><path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"></path></svg>
+            <span data-i18n="volver-inicio">Volver al Inicio</span>
+        </a>
         <a href="/" class="nav__logo-link">
             <img src="/assets/logo.webp" alt="Logo Heladería Luxer - Los mejores helados en Lo Pagán y San Pedro del Pinatar" class="nav__logo">
         </a>
@@ -58,17 +62,25 @@
 
     <main class="main">
         <h1 class="main__title" data-i18n="batidos">Batidos</h1>
-        <div class="products-grid">
+        <section class="flavors-section">
+        <div class="legend-sticky">
+        <div class="price-legend">
+            <span class="price-legend__label" data-i18n="precio-batido">Precio</span>
+            <span class="price-legend__item"><span data-i18n="sin-nata">Sin nata</span> <strong>4.00€</strong></span>
+            <span class="price-legend__item"><span data-i18n="con-nata">Con nata</span> <strong>5.00€</strong></span>
+            <span class="price-legend__item"><span data-i18n="con-bola">Con bola</span> <strong>7.00€</strong></span>
+            <div class="price-legend__cta-row">
+                <a href="#toppings" class="product-card__button price-legend__cta" data-i18n="elige-salsa-combo">Tus toppings favoritos por 0.50€ →</a>
+            </div>
+        </div>
+        </div>
+        <div class="products-grid products-grid--flavors">
                 <div class="product-card">
                     <div class="product-card__image">
                         <img loading="lazy" decoding="async" src="/assets/batido1.webp" alt="Batido de Vainilla de Madagascar en Lo Pagán" class="product-card__img" data-i18n-alt="batido-vainilla-alt">
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="vainilla">Vainilla de Madagascar</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -78,10 +90,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="chocolate">Chocolate</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -91,10 +99,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="fresa">Fresa</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -107,10 +111,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="pistacho">Pistacho</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -123,10 +123,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="limon">Limón</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -139,10 +135,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="menta">Menta</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -155,10 +147,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="nata">Nata</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -171,10 +159,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="turron">Turrón</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -187,10 +171,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="ron-pasas">Ron con Pasas</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -203,10 +183,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="tuti-fruti">Tuti Fruti</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -219,10 +195,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="mantecado">Mantecado</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -235,10 +207,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="stracciatella">Stracciatella</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -251,10 +219,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="vainilla-cookies">Vainilla con Cookies</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -267,10 +231,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="cafe">Café</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -283,10 +243,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="dulce-leche">Dulce de Leche</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -299,10 +255,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="kinder">Kinder</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -315,10 +267,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="kinder-bueno">Kinder Bueno</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -331,10 +279,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="oreo">Oreo</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -345,9 +289,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="nube">Nube</h2>
-                        <p class="product-card__price" style="visibility:hidden;">Sin nata: 4.00€</p>
-                        <p class="product-card__price" style="visibility:hidden;">Con nata: 5.00€</p>
-                        <p class="product-card__price" style="visibility:hidden;">Con bola: 7.00€</p>
                     </div>
                 </div>
 
@@ -358,9 +299,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="chicle">Chicle</h2>
-                        <p class="product-card__price" style="visibility:hidden;">Sin nata: 4.00€</p>
-                        <p class="product-card__price" style="visibility:hidden;">Con nata: 5.00€</p>
-                        <p class="product-card__price" style="visibility:hidden;">Con bola: 7.00€</p>
                     </div>
                 </div>
 
@@ -373,10 +311,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="mango">Mango</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
 
@@ -389,12 +323,9 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="mandarina">Mandarina</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
+
                 <div class="product-card">
                     <div class="product-card__image">
                         <img loading="lazy" decoding="async" src="/assets/batido23.webp" alt="Batido de Yogurt en San Pedro del Pinatar" class="product-card__img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -404,12 +335,9 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="yogurt">Yogurt</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
+
                 <div class="product-card">
                     <div class="product-card__image">
                         <img loading="lazy" decoding="async" src="/assets/batido24.webp" alt="Batido de Coco en San Pedro del Pinatar" class="product-card__img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -419,22 +347,14 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="coco">Coco</h2>
-                        <p class="product-card__price"><span class="price-label" data-i18n="sin-nata">Sin nata</span><span class="price-value">4.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-nata">Con nata</span><span class="price-value">5.00€</span></p>
-                        <p class="product-card__price"><span class="price-label" data-i18n="con-bola">Con bola</span><span class="price-value">7.00€</span></p>
-                        <a href="#toppings" class="product-card__button" data-i18n="elige-salsa">Elige tu salsa</a>
                     </div>
                 </div>
         </div>
-
-        <!-- Franja promocional -->
-        <div class="promotional-banner">
-            <h2 class="promotional-banner__text" data-i18n="mezcla-sabores">MEZCLA TUS SABORES FAVORITOS Y CREA LA COMBINACIÓN PERFECTA</h2>
-        </div>
+        </section>
 
         <!-- Sección Gofres -->
         <h2 class="main__title" data-i18n="gofres">Gofres</h2>
-        <div class="products-grid">
+        <div class="products-grid products-grid--two">
                 <div class="product-card">
                     <div class="product-card__image">
                         <img loading="lazy" decoding="async" src="/assets/gofre1.webp" alt="Gofre solo en Lo Pagán" class="product-card__img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -444,7 +364,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="gofre-solo">Gofre solo</h2>
-                        <p class="product-card__description" data-i18n="desc-gofre-solo">Gofre recién hecho, crujiente y dorado por fuera, suave por dentro.</p>
                         <p class="product-card__price">2.50€</p>
                     </div>
                 </div>
@@ -458,7 +377,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="gofre-nata-sirope">Gofre con nata o sirope</h2>
-                        <p class="product-card__description" data-i18n="desc-gofre-nata-sirope">Gofre caliente acompañado de nata montada o sirope al gusto.</p>
                         <p class="product-card__price">3.00€</p>
                     </div>
                 </div>
@@ -486,7 +404,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="gofre-nata-sirope2">Gofre con nata y sirope</h2>
-                        <p class="product-card__description" data-i18n="desc-gofre-nata-sirope2">Gofre caliente con nata montada y sirope de chocolate o caramelo.</p>
                         <p class="product-card__price">4.00€</p>
                     </div>
                 </div>
@@ -500,7 +417,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="gofre-nata-nocilla">Gofre con nata y nocilla</h2>
-                        <p class="product-card__description" data-i18n="desc-gofre-nata-nocilla">Gofre caliente con nata montada y nocilla de cacao y avellanas.</p>
                         <p class="product-card__price">4.50€</p>
                     </div>
                 </div>
@@ -513,16 +429,15 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="gofre-bola-helado">Gofre con bola de helado</h2>
-                        <p class="product-card__description" data-i18n="desc-gofre-bola-helado">Gofre caliente con una bola de helado al gusto elegido.</p>
+                        <a href="/helados" class="product-card__button" data-i18n="ver-sabores-helado">Ver sabores →</a>
                         <p class="product-card__price">5.50€</p>
                     </div>
                 </div>
         </div>
 
         <!-- Sección Toppings -->
-        <div style="margin-top: 100px;"></div>
         <h2 class="main__title" data-i18n="toppings" id="toppings">Toppings</h2>
-        <div class="products-grid">
+        <div class="products-grid products-grid--two-mobile">
                 <div class="product-card">
                     <div class="product-card__image">
                         <img loading="lazy" decoding="async" src="/assets/topping1.webp" alt="Topping de Chocolate en Lo Pagán" class="product-card__img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -532,7 +447,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="topping-lotus">Trozos de Lotus</h2>
-                        <p class="product-card__description" data-i18n="desc-topping-lotus">Crujientes pedacitos de galleta caramelizada con el inconfundible sabor especiado de Lotus Biscoff.</p>
                         <p class="product-card__price">0.50€</p>
                     </div>
                 </div>
@@ -546,7 +460,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="topping-oreo">Trozos de Oreo</h2>
-                        <p class="product-card__description" data-i18n="desc-topping-oreo">Deliciosos fragmentos de galleta con cacao y crema, con el clásico sabor de las Oreo.</p>
                         <p class="product-card__price">0.50€</p>
                     </div>
                 </div>
@@ -560,7 +473,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="topping-filipinos">Trozos de filipinos</h2>
-                        <p class="product-card__description" data-i18n="desc-topping-filipinos">Pedacitos de galleta bañada en chocolate, con el inconfundible sabor de los clásicos Filipinos.</p>
                         <p class="product-card__price">0.50€</p>
                     </div>
                 </div>
@@ -574,7 +486,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="topping-kinder">Salsa Kinder</h2>
-                        <p class="product-card__description" data-i18n="desc-topping-kinder">Cremosa y suave, con el delicioso sabor a avellanas y leche típico de Kinder.</p>
                         <p class="product-card__price">0.50€</p>
                     </div>
                 </div>
@@ -588,7 +499,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="topping-nocilla">Salsa Nocilla</h2>
-                        <p class="product-card__description" data-i18n="desc-topping-nocilla">Una crema untuosa con el sabor clásico de cacao y avellanas que tanto gusta.</p>
                         <p class="product-card__price">0.50€</p>
                     </div>
                 </div>
@@ -601,7 +511,6 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="topping-pistacho">Salsa Pistacho</h2>
-                        <p class="product-card__description" data-i18n="desc-topping-pistacho">Crema untuosa con el sabor pistacho que tanto gusta.</p>
                         <p class="product-card__price">0.50€</p>
                     </div>
                 </div>
@@ -615,12 +524,21 @@
                     </div>
                     <div class="product-card__content">
                         <h2 class="product-card__title" data-i18n="topping-lotus-salsa">Salsa de Lotus</h2>
-                        <p class="product-card__description" data-i18n="desc-topping-lotus-salsa">Cremosa y especiada, con el inconfundible sabor caramelizado de las galletas Lotus Biscoff.</p>
                         <p class="product-card__price">0.50€</p>
                     </div>
                 </div>
         </div>
     </main>
+
+    <!-- CTA reseñas Google · el enlace vive en una sola constante; sustituir por el g.page/r/.../review cuando esté disponible -->
+    <section class="review-cta" aria-labelledby="review-cta-title">
+        <div class="review-cta__inner">
+            <div class="review-cta__stars" aria-hidden="true">★★★★★</div>
+            <h2 class="review-cta__title" id="review-cta-title" data-i18n="resena-titulo">¿Has llegado hasta aquí? 🍦</h2>
+            <p class="review-cta__text" data-i18n="resena-texto">Tu opinión nos importa muchísimo. Si te ha gustado Luxer, déjanos tu reseña en Google y ayúdanos a seguir endulzando Lo Pagán.</p>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Helader%C3%ADa+Luxer+Lo+Pag%C3%A1n+San+Pedro+del+Pinatar" class="review-cta__btn" target="_blank" rel="noopener" data-i18n="resena-boton">Dejar reseña en Google</a>
+        </div>
+    </section>
 
     <footer class="footer">
         <div class="footer__container">
@@ -668,6 +586,7 @@
     </div>
 
     <script src="/translations.js"></script>
+    <script src="/meta_i18n.js"></script>
     <script src="/script.js"></script>
 </body>
 </html> 
