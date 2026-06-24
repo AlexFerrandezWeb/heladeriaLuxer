@@ -375,3 +375,141 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+/* ============================================================
+   ALÉRGENOS (información orientativa · BORRADOR a revisar por el negocio)
+   Inyecta iconos de alérgenos en cada .product-card y una leyenda al pie.
+   Los valores son DEFAULTS TÍPICOS por tipo de producto: deben confirmarse
+   con las recetas/proveedores reales antes de considerarlos definitivos.
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof translations === 'undefined') return;
+
+    // Pictogramas SVG propios (estilo "etiqueta de alérgeno": círculo de color
+    // + glifo blanco). Sin dependencias ni problemas de licencia.
+    const svg = (bg, inner) =>
+        `<svg class="allergen-svg" viewBox="0 0 32 32" role="img" aria-hidden="true">` +
+        `<circle cx="16" cy="16" r="16" fill="${bg}"/>${inner}</svg>`;
+    // Iconos oficiales (SVG en assets). El texto inferior del SVG se recorta por
+    // CSS (.allergen-svg usa object-fit:cover + object-position:top).
+    const img = (file) => `<img class="allergen-svg" src="/assets/${file}" alt="" loading="lazy">`;
+    const ICON = {
+        'gluten': img('IconoAlergenoGluten-Gluten_icon-icons.com_67600.svg'),
+        'leche': img('IconoAlergenoLacteos-DairyProducts_icon-icons.com_67597.svg'),
+        'huevo': img('IconoAlergenoHuevo-Egg_icon-icons.com_67598.svg'),
+        'frutos-secos': img('IconoAlergenoFrutosCascaraPeelFruits_icon-icons.com_67601.svg'),
+        'soja': img('Soy_icon-icons.com_67593.svg'),
+        'cacahuetes': img('IconoAlergenoCacahuete-Peanuts_icon-icons.com_67604.svg'),
+        // Sin archivo propio: pictograma inline en el mismo estilo (círculo + glifo)
+        'sulfitos': svg('#4f8fc0',
+            '<text x="16" y="20.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#fff">SO2</text>'),
+        'pescado': svg('#36a3a8',
+            '<path d="M6 16 Q12 9 20 16 Q12 23 6 16 Z" fill="#fff"/>' +
+            '<path d="M19 16 L26 12 V20 Z" fill="#fff"/>' +
+            '<circle cx="10.5" cy="15" r="1.1" fill="#36a3a8"/>')
+    };
+    const ORDER = ['gluten', 'leche', 'huevo', 'frutos-secos', 'soja', 'cacahuetes', 'sulfitos', 'pescado'];
+
+    const curLang = () => {
+        const f = location.pathname.split('/').filter(Boolean)[0];
+        return (f === 'en' || f === 'fr') ? f : 'es';
+    };
+    const pageType = () => {
+        const parts = location.pathname.split('/').filter(Boolean);
+        if (parts[0] === 'en' || parts[0] === 'fr') parts.shift();
+        return (parts[parts.length - 1] || '').replace(/\.html$/, '');
+    };
+    const t = (key) => {
+        const l = curLang();
+        return (translations[l] && translations[l][key]) || (translations.es && translations.es[key]) || key;
+    };
+    const uniq = (a) => [...new Set(a)];
+
+    // ---- Mapa BORRADOR de alérgenos típicos (REVISAR antes de publicar) ----
+    const DESSERT_BASE = ['leche', 'huevo'];
+    const FLAVOR_EXTRA = {
+        'pistacho': ['frutos-secos'], 'turron': ['frutos-secos'], 'almendrada': ['frutos-secos'],
+        'merengada': ['frutos-secos'], 'kinder': ['soja'], 'kinder-bueno': ['gluten', 'frutos-secos', 'soja'],
+        'oreo': ['gluten', 'soja'], 'vainilla-cookies': ['gluten', 'soja'], 'stracciatella': ['soja'],
+        'chocolate': ['soja'], 'chocolate-dubai': ['gluten', 'frutos-secos', 'soja'], 'capuccino': ['gluten'],
+        'gusano': ['gluten'], 'jamaica': ['soja'], 'banana-split': ['frutos-secos']
+    };
+    const GRANIZADOS = {
+        'horchata-almendras': ['frutos-secos'], 'leche': ['leche'],
+        'canario': ['leche'], 'blanco-y-negro': ['leche']
+    };
+    const GOFRE_BASE = ['gluten', 'leche', 'huevo', 'soja'];
+    const GOFRE_EXTRA = { 'gofre-nocilla': ['frutos-secos'], 'gofre-nata-nocilla': ['frutos-secos'] };
+    const TOPPING = {
+        'topping-lotus': ['gluten', 'soja'], 'topping-lotus-salsa': ['gluten', 'soja'],
+        'topping-oreo': ['gluten', 'soja', 'leche'], 'topping-filipinos': ['gluten', 'soja', 'leche'],
+        'topping-kinder': ['leche', 'soja', 'frutos-secos'], 'topping-nocilla': ['leche', 'soja', 'frutos-secos'],
+        'topping-pistacho': ['frutos-secos', 'leche']
+    };
+    const DESAYUNOS = {
+        'aceite-sal': ['gluten'], 'tomate-aceite': ['gluten'], 'jamon-tomate': ['gluten'],
+        'atun-tomate': ['gluten', 'pescado'], 'mantequilla-mermelada': ['gluten', 'leche'],
+        'cruasan': ['gluten', 'leche', 'huevo', 'soja'], 'cruasan-jamon-queso': ['gluten', 'leche', 'huevo', 'soja'],
+        'cruasan-mantequilla-mermelada': ['gluten', 'leche', 'huevo', 'soja'],
+        'napolitana-chocolate': ['gluten', 'leche', 'huevo', 'soja'], 'napolitana-crema': ['gluten', 'leche', 'huevo']
+    };
+
+    function allergensFor(key, page) {
+        if (!key) return [];
+        if (key.indexOf('gofre-') === 0) return uniq([...GOFRE_BASE, ...(GOFRE_EXTRA[key] || [])]);
+        if (key.indexOf('topping-') === 0) return TOPPING[key] || [];
+        if (page === 'granizados') return GRANIZADOS[key] || [];
+        if (page === 'desayunos_postres') return DESAYUNOS[key] || [];
+        if (page === 'combinados' || page === 'bebidas') return [];
+        // helados / batidos: postres lácteos
+        return uniq([...DESSERT_BASE, ...(FLAVOR_EXTRA[key] || [])]);
+    }
+
+    const page = pageType();
+    const used = new Set();
+
+    document.querySelectorAll('.product-card').forEach(card => {
+        const titleEl = card.querySelector('.product-card__title[data-i18n]');
+        if (!titleEl) return;
+        const key = titleEl.getAttribute('data-i18n');
+        const list = allergensFor(key, page).filter(a => ICON[a]);
+        if (!list.length) return;
+        const ordered = ORDER.filter(a => list.includes(a));
+        ordered.forEach(a => used.add(a));
+        const content = card.querySelector('.product-card__content') || card;
+        let row = content.querySelector('.product-card__allergens');
+        if (!row) { row = document.createElement('div'); row.className = 'product-card__allergens'; content.appendChild(row); }
+        row.innerHTML = ordered.map(a =>
+            `<span class="allergen-icon" data-allergen="${a}"><span aria-hidden="true">${ICON[a]}</span></span>`
+        ).join('');
+    });
+
+    function localizeIcons() {
+        document.querySelectorAll('.allergen-icon[data-allergen]').forEach(el => {
+            el.setAttribute('title', t('alerg-' + el.getAttribute('data-allergen')));
+            el.setAttribute('aria-label', t('alerg-' + el.getAttribute('data-allergen')));
+        });
+    }
+
+    if (used.size) {
+        const main = document.querySelector('main') || document.body;
+        const legend = document.createElement('section');
+        legend.className = 'allergen-legend';
+        legend.innerHTML =
+            `<h3 class="allergen-legend__title" data-i18n="alergenos-titulo">${t('alergenos-titulo')}</h3>` +
+            `<ul class="allergen-legend__list">` +
+            ORDER.filter(a => used.has(a)).map(a =>
+                `<li class="allergen-icon"><span aria-hidden="true">${ICON[a]}</span> <span data-i18n="alerg-${a}">${t('alerg-' + a)}</span></li>`
+            ).join('') +
+            `</ul>` +
+            `<p class="allergen-legend__note" data-i18n="alergenos-aviso">${t('alergenos-aviso')}</p>`;
+        main.appendChild(legend);
+    }
+
+    localizeIcons();
+    // Reaplica los tooltips al cambiar de idioma (los textos con data-i18n los
+    // localiza el script principal; los title/aria-label los actualizamos aquí).
+    document.querySelectorAll('.language-toggle__btn').forEach(b =>
+        b.addEventListener('click', () => setTimeout(localizeIcons, 0)));
+    window.addEventListener('popstate', () => setTimeout(localizeIcons, 0));
+});

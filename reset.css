@@ -102,7 +102,7 @@ blockquote:before, blockquote:after , q:before , q:after{
 form , input , textarea , select , button , label{
     font-family: inherit;
     font-size: inherit;
-    hyphens: auto; /*nos resuelve problemas de desbordamiento aplicando un guión para separar el texto*/ /*opcional*/
+    hyphens: manual; /*sin guiones automáticos en formularios*/
     background-color: transparent;
     display: block;
     color: inherit;
@@ -131,9 +131,9 @@ body{
     font-family: var(--tipo-principal);
     color: var(--color-primario);
     line-height: 1.4em;
-    
-    hyphens: auto; /*se encarga de poner un guión para separ el texto de final de linea*/ /*opcional*/
-    -webkit-hyphens: auto;
+
+    hyphens: manual; /*sin guiones automáticos: las palabras no se parten a mitad (Lo-tus, mer-melada...). Se respeta el corte por espacios y word-break para palabras muy largas*/
+    -webkit-hyphens: manual;
     
     /*estos tres atributos se aplican para darle a la tipografía un tono más definido solo en caso de los macs*/ /*opcional*/
     font-smooth: always;

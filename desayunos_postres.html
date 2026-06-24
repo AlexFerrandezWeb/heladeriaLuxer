@@ -24,7 +24,9 @@
     <meta property="og:description" content="Desayunos y postres en Heladería Luxer. Tostadas, cruasanes, cafés, tés y dulces caseros en la costa de Murcia.">
     <meta property="og:image" content="https://heladerialuxer.es/assets/og-image.jpg">
 
-    <link rel="icon" type="image/webp" href="/assets/logo.webp">
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" sizes="any">
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -55,7 +57,7 @@
             <li class="nav__item"><a href="/granizados" class="nav__link" data-i18n="granizados">Granizados</a></li>
             <li class="nav__item"><a href="/batidos" class="nav__link" data-i18n="batidos">Batidos</a></li>
             <li class="nav__item"><a href="/bebidas" class="nav__link" data-i18n="bebidas">Bebidas</a></li>
-            <li class="nav__item"><a href="/combinados" class="nav__link" data-i18n="combinados">Combinados</a></li>
+            <li class="nav__item"><a href="/combinados" class="nav__link" data-i18n="combinados">Cócteles y combinados</a></li>
             <li class="nav__item"><a href="/desayunos_postres" class="nav__link active" data-i18n="desayunos_postres">Desayunos</a></li>
         </ul>
     </nav>
@@ -93,15 +95,13 @@
             </section>
         </div>
         <h2 class="main__subtitle" data-i18n="tostadas">Tostadas</h2>
-        <div class="products-grid">
+        <div class="products-grid products-grid--two products-grid--cols-2">
                 <div class="product-card">
                     <div class="product-card__image">
                         <img loading="lazy" decoding="async" src="/assets/tostada1.webp" alt="Tostada con aceite de oliva y sal" class="product-card__img">
                     </div>
                     <div class="product-card__content">
-                        <h2 class="product-card__title" data-i18n="aceite-sal">Aceite de oliva y sal</h2>
-                        <p class="product-card__description" data-i18n="desc-aceite-sal">Tostada crujiente con aceite de oliva virgen extra y sal marina.</p>
-                        <p class="product-card__price">1.00€</p>
+                        <h2 class="product-card__title" data-i18n="aceite-sal">Aceite de oliva y sal</h2>                        <p class="product-card__price">1.00€</p>
                     </div>
                 </div>
 
@@ -110,9 +110,7 @@
                         <img loading="lazy" decoding="async" src="/assets/tostada2.webp" alt="Tostada con tomate y aceite" class="product-card__img">
                     </div>
                     <div class="product-card__content">
-                        <h2 class="product-card__title" data-i18n="tomate-aceite">Tomate y Aceite</h2>
-                        <p class="product-card__description" data-i18n="desc-tomate-aceite">Tostada con tomate rallado, aceite de oliva virgen extra y sal.</p>
-                        <p class="product-card__price">1.50€</p>
+                        <h2 class="product-card__title" data-i18n="tomate-aceite">Tomate y Aceite</h2>                        <p class="product-card__price">1.50€</p>
                     </div>
                 </div>
 
@@ -121,9 +119,7 @@
                         <img loading="lazy" decoding="async" src="/assets/tostada3.webp" alt="Tostada con jamón serrano y tomate" class="product-card__img">
                     </div>
                     <div class="product-card__content">
-                        <h2 class="product-card__title" data-i18n="jamon-tomate">Jamón Serrano y tomate</h2>
-                        <p class="product-card__description" data-i18n="desc-jamon-tomate">Tostada con jamón serrano de bellota, tomate rallado y aceite de oliva.</p>
-                        <p class="product-card__price">3.00€</p>
+                        <h2 class="product-card__title" data-i18n="jamon-tomate">Jamón Serrano y tomate</h2>                        <p class="product-card__price">3.00€</p>
                     </div>
                 </div>
 
@@ -132,9 +128,7 @@
                         <img loading="lazy" decoding="async" src="/assets/tostada4.webp" alt="Tostada con atún y tomate" class="product-card__img">
                     </div>
                     <div class="product-card__content">
-                        <h2 class="product-card__title" data-i18n="atun-tomate">Atún y tomate</h2>
-                        <p class="product-card__description" data-i18n="desc-atun-tomate">Tostada con atún en aceite de oliva y tomate rallado.</p>
-                        <p class="product-card__price">3.00€</p>
+                        <h2 class="product-card__title" data-i18n="atun-tomate">Atún y tomate</h2>                        <p class="product-card__price">3.00€</p>
                     </div>
                 </div>
                 <div class="product-card">
@@ -142,22 +136,18 @@
                         <img loading="lazy" decoding="async" src="/assets/tostada5.webp" alt="Tostada con mantequilla y mermelada" class="product-card__img">
                     </div>
                     <div class="product-card__content">
-                        <h2 class="product-card__title" data-i18n="mantequilla-mermelada">Mantequilla y mermelada</h2>
-                        <p class="product-card__description" data-i18n="desc-mantequilla-mermelada">Tostada untada con mantequilla y mermelada.</p>
-                        <p class="product-card__price">1.50€</p>
+                        <h2 class="product-card__title" data-i18n="mantequilla-mermelada">Mantequilla y mermelada</h2>                        <p class="product-card__price">1.50€</p>
                     </div>
                 </div>
         </div>
         <h2 class="main__subtitle" data-i18n="dulces">Dulces</h2>
-        <div class="products-grid">
+        <div class="products-grid products-grid--two products-grid--cols-2">
                 <div class="product-card">
                     <div class="product-card__image">
                         <img loading="lazy" decoding="async" src="/assets/dulce1.webp" alt="Cruasán" class="product-card__img">
                     </div>
                     <div class="product-card__content">
-                        <h2 class="product-card__title" data-i18n="cruasan">Cruasán</h2>
-                        <p class="product-card__description" data-i18n="desc-cruasan">Cruasán recién horneado, crujiente y dorado por fuera, suave por dentro.</p>
-                        <p class="product-card__price">1.50€</p>
+                        <h2 class="product-card__title" data-i18n="cruasan">Cruasán</h2>                        <p class="product-card__price">1.50€</p>
                     </div>
                 </div>
 
@@ -166,9 +156,7 @@
                         <img loading="lazy" decoding="async" src="/assets/dulce2.webp" alt="Cruasán jamón york y queso" class="product-card__img">
                     </div>
                     <div class="product-card__content">
-                        <h2 class="product-card__title" data-i18n="cruasan-jamon-queso">Cruasán jamón york y queso</h2>
-                        <p class="product-card__description" data-i18n="desc-cruasan-jamon-queso">Cruasán relleno con jamón york y queso fundido.</p>
-                        <p class="product-card__price">2.00€</p>
+                        <h2 class="product-card__title" data-i18n="cruasan-jamon-queso">Cruasán jamón york y queso</h2>                        <p class="product-card__price">2.00€</p>
                     </div>
                 </div>
 
@@ -177,9 +165,7 @@
                         <img loading="lazy" decoding="async" src="/assets/dulce3.webp" alt="Cruasán con mantequilla y mermelada" class="product-card__img">
                     </div>
                     <div class="product-card__content">
-                        <h2 class="product-card__title" data-i18n="cruasan-mantequilla-mermelada">Cruasán con mantequilla y mermelada</h2>
-                        <p class="product-card__description" data-i18n="desc-cruasan-mantequilla-mermelada">Cruasán untado con mantequilla y mermelada casera de frutas del bosque.</p>
-                        <p class="product-card__price">1.80€</p>
+                        <h2 class="product-card__title" data-i18n="cruasan-mantequilla-mermelada">Cruasán con mantequilla y mermelada</h2>                        <p class="product-card__price">1.80€</p>
                     </div>
                 </div>
 
@@ -188,9 +174,7 @@
                         <img loading="lazy" decoding="async" src="/assets/dulce4.webp" alt="Napolitana de chocolate" class="product-card__img">
                     </div>
                     <div class="product-card__content">
-                        <h2 class="product-card__title" data-i18n="napolitana-chocolate">Napolitana de chocolate</h2>
-                        <p class="product-card__description" data-i18n="desc-napolitana-chocolate">Napolitana rellena de chocolate negro fundido.</p>
-                        <p class="product-card__price">1.80€</p>
+                        <h2 class="product-card__title" data-i18n="napolitana-chocolate">Napolitana de chocolate</h2>                        <p class="product-card__price">1.80€</p>
                     </div>
                 </div>
 
@@ -202,9 +186,7 @@
                         </div>
                     </div>
                     <div class="product-card__content">
-                        <h2 class="product-card__title" data-i18n="napolitana-crema">Napolitana de crema</h2>
-                        <p class="product-card__description" data-i18n="desc-napolitana-crema">Napolitana rellena de crema pastelera casera.</p>
-                        <p class="product-card__price">1.80€</p>
+                        <h2 class="product-card__title" data-i18n="napolitana-crema">Napolitana de crema</h2>                        <p class="product-card__price">1.80€</p>
                     </div>
                 </div>
         </div>
