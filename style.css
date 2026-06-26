@@ -610,7 +610,8 @@ h2[data-i18n="tes"] {
 }
 
 .category-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
     background: var(--catskill-white);
     border-radius: 12px;
@@ -627,7 +628,8 @@ h2[data-i18n="tes"] {
 
 .category-card__image {
     width: 100%;
-    height: 75%;
+    flex: 1 1 auto;
+    min-height: 0;
     overflow: hidden;
 }
 
@@ -659,7 +661,8 @@ h2[data-i18n="tes"] {
     background: var(--catskill-white);
     border-top: 2px solid transparent;
     border-image: linear-gradient(90deg, var(--aquamarine-blue), var(--rose)) 1;
-    height: 25%;
+    flex: 0 0 auto;
+    line-height: 1.15;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -737,6 +740,16 @@ h2[data-i18n="tes"] {
     transition: color 0.3s ease;
 }
 
+/* Iconos sociales en SVG inline (sustituyen a Font Awesome para no cargar un
+   CSS externo que bloquea el render). Glifos sólidos de marca; el tamaño lo da
+   font-size del enlace. Alto fijo + ancho automático para no deformar el logo. */
+.footer__social-link svg {
+    height: 1.1em;
+    width: auto;
+    display: block;
+    fill: currentColor;
+}
+
 .footer__social-link:hover {
     color: var(--charm);
 }
@@ -800,21 +813,20 @@ h2[data-i18n="tes"] {
     box-sizing: border-box;
     background: var(--catskill-white);
     border-radius: 12px;
-    overflow: hidden;
+    /* visible para que el globo de alérgenos pueda salir por debajo sin
+       recortarse; las esquinas redondeadas de la foto las da .product-card__image */
+    overflow: visible;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
 }
 
-.product-card:hover {
-    transform: translateY(-5px);
-}
-
 .product-card__image {
     width: 100%;
     height: 220px;
     overflow: hidden;
+    border-radius: 18px 18px 0 0;
 }
 
 .product-card__img {
@@ -861,9 +873,6 @@ h2[data-i18n="tes"] {
     line-height: 1;
 }
 
-.product-card:hover .product-card__img {
-    transform: scale(1.05);
-}
 
 .product-card__content {
     padding: 1.5rem;
@@ -876,6 +885,8 @@ h2[data-i18n="tes"] {
     background: linear-gradient(180deg, #fdf7f1 0%, #fbeef0 100%);
     border-top: 2px solid transparent;
     border-image: linear-gradient(90deg, var(--aquamarine-blue), var(--rose)) 1;
+    /* redondea las esquinas inferiores ahora que la tarjeta es overflow:visible */
+    border-radius: 0 0 18px 18px;
 }
 
 .product-card__title {
@@ -929,6 +940,75 @@ h2[data-i18n="tes"] {
     /* Los SVG oficiales (img) llevan un viewBox cuadrado ajustado al círculo;
        contain muestra el pictograma completo sin recortarlo. */
     object-fit: contain;
+}
+
+/* Globo informativo: el nombre del alérgeno aparece al tocar/clicar (móvil)
+   o pasar el ratón (escritorio) sobre el icono de la tarjeta. */
+.product-card__allergens .allergen-icon {
+    position: relative;
+    cursor: pointer;
+    border-radius: 50%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.product-card__allergens .allergen-icon::after {
+    content: attr(data-label);
+    position: absolute;
+    top: calc(100% + 9px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+    background: var(--charm, #5a3d5c);
+    color: #fff;
+    padding: 0.3rem 0.55rem;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    z-index: 30;
+}
+
+.product-card__allergens .allergen-icon::before {
+    content: "";
+    position: absolute;
+    top: calc(100% + 3px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+    border: 6px solid transparent;
+    border-bottom-color: var(--charm, #5a3d5c);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    z-index: 30;
+}
+
+.product-card__allergens .allergen-icon.is-open::after,
+.product-card__allergens .allergen-icon.is-open::before,
+.product-card__allergens .allergen-icon:focus-visible::after,
+.product-card__allergens .allergen-icon:focus-visible::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.product-card__allergens .allergen-icon:focus-visible {
+    outline: 2px solid var(--charm, #5a3d5c);
+    outline-offset: 2px;
+}
+
+@media (hover: hover) {
+    .product-card__allergens .allergen-icon:hover::after,
+    .product-card__allergens .allergen-icon:hover::before {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+    }
 }
 
 /* Leyenda de alérgenos + aviso (una vez por página, la inyecta script.js) */
@@ -1438,6 +1518,18 @@ link[rel="icon"] {
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
+/* Badge "Nuevo": destaca un sabor recién añadido. Naranja/coral vivo, muy
+   visible sobre el crema de las tarjetas y distinto del rojo de "No disponible". */
+.product-label--new {
+    background: linear-gradient(135deg, var(--rose), var(--rose-deep)) !important;
+    color: #5a2a31 !important;
+    border: none !important;
+    font-weight: 800 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(217, 154, 160, 0.5) !important;
+}
+
 .products-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1579,6 +1671,9 @@ link[rel="icon"] {
 }
 
 .price-legend__cta {
+    position: relative;
+    z-index: 0;
+    overflow: hidden; /* recorta la capa giratoria a la forma redondeada */
     text-decoration: none;
     align-self: center !important;
     margin-top: 0.15rem !important;
@@ -1591,10 +1686,48 @@ link[rel="icon"] {
     box-shadow: 0 7px 18px rgba(232, 185, 188, 0.55) !important;
 }
 
+/* Borde rosa que gira alrededor del botón para llamar la atención.
+   ::before = capa de color rosa que rota (transform: rotate).
+   ::after  = tapa el centro con el color del botón y deja solo un anillo
+              de 3px de la capa giratoria asomando por el borde. */
+.price-legend__cta::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    aspect-ratio: 1;
+    translate: -50% -50%;
+    z-index: -2;
+    pointer-events: none;
+    background: conic-gradient(
+        var(--rose-deep), #ffe3e6, var(--rose-deep), #ffe3e6, var(--rose-deep)
+    );
+    animation: cta-orbit 2.4s linear infinite;
+}
+
+.price-legend__cta::after {
+    content: "";
+    position: absolute;
+    inset: 2px; /* grosor del anillo rosa */
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    background: var(--aquamarine-blue);
+}
+
 .price-legend__cta:hover,
 .price-legend__cta:focus {
-    background: linear-gradient(135deg, var(--charm), var(--rose-deep)) !important;
     box-shadow: 0 10px 24px rgba(217, 154, 160, 0.55) !important;
+}
+
+.price-legend__cta:hover::after,
+.price-legend__cta:focus::after {
+    background: var(--charm);
+}
+
+@keyframes cta-orbit {
+    to { transform: rotate(1turn); }
 }
 
 /* Responsive: tarjeta de precios compacta y los 3 chips (Pequeña/Normal/Grande)
@@ -1928,8 +2061,7 @@ body {
 }
 
 /* Feedback al tocar en móvil (los :hover no se activan al tocar) */
-.category-card:active,
-.product-card:active {
+.category-card:active {
     transform: translateY(-2px) scale(0.99);
 }
 
@@ -2076,7 +2208,6 @@ body {
     transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s ease;
 }
 
-.product-card:hover,
 .category-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 16px 34px rgba(45, 58, 74, 0.22);
@@ -2314,9 +2445,11 @@ body {
     display: flex;
 }
 
-/* Bloquea el scroll mientras se muestra la bienvenida */
-.welcome-on,
-.welcome-on body {
+/* Bloquea el scroll mientras se muestra la bienvenida.
+   Al pulsar "Ver la carta" se añade .welcome-done para reactivar el scroll
+   sin ocultar el overlay de golpe (deja que la animación de salida termine). */
+.welcome-on:not(.welcome-done),
+.welcome-on:not(.welcome-done) body {
     overflow: hidden;
     height: 100%;
 }

@@ -1,3 +1,15 @@
+/* ============================================================
+   ENLACE DE RESEÑA DE GOOGLE — un único sitio para cambiarlo.
+   Cuando tengas el enlace directo del Perfil de Empresa
+   ("https://g.page/r/XXXX/review"), pégalo aquí en REVIEW_URL y listo:
+   rellena el href de todos los botones .review-cta__btn de la web.
+   El href del HTML queda como respaldo si el usuario tiene JS desactivado.
+   ============================================================ */
+const REVIEW_URL = 'https://search.google.com/local/writereview?placeid=ChIJByJxB6EPYw0Rg3qBrI1A3eg';
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.review-cta__btn').forEach(a => { a.href = REVIEW_URL; });
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.querySelector('.nav__toggle');
     const navList = document.querySelector('.nav__list');
@@ -274,6 +286,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const dismissWelcome = () => {
             if (wDismissed) return;
             wDismissed = true;
+            // Reactiva el scroll de la página (mantiene el overlay para la animación)
+            document.documentElement.classList.add('welcome-done');
             if (reducedMotion) {
                 welcomeEl.classList.add('is-hidden');
                 return;
@@ -432,11 +446,14 @@ document.addEventListener('DOMContentLoaded', () => {
         'merengada': ['frutos-secos'], 'kinder': ['soja'], 'kinder-bueno': ['gluten', 'frutos-secos', 'soja'],
         'oreo': ['gluten', 'soja'], 'vainilla-cookies': ['gluten', 'soja'], 'stracciatella': ['soja'],
         'chocolate': ['soja'], 'chocolate-dubai': ['gluten', 'frutos-secos', 'soja'], 'capuccino': ['gluten'],
-        'gusano': ['gluten'], 'jamaica': ['soja'], 'banana-split': ['frutos-secos']
+        'gusano': ['gluten'], 'jamaica': ['soja'], 'banana-split': ['frutos-secos'],
+        'tarta-queso': ['gluten']  // base de galleta (BORRADOR, confirmar receta)
     };
     const GRANIZADOS = {
         'horchata-almendras': ['frutos-secos'], 'leche': ['leche'],
-        'canario': ['leche'], 'blanco-y-negro': ['leche']
+        'canario': ['leche'], 'blanco-y-negro': ['leche'],
+        'cebada-cafe-descafeinado': ['gluten'],  // la cebada contiene gluten
+        'turron': ['frutos-secos']               // turrón = almendra
     };
     const GOFRE_BASE = ['gluten', 'leche', 'huevo', 'soja'];
     const GOFRE_EXTRA = { 'gofre-nocilla': ['frutos-secos'], 'gofre-nata-nocilla': ['frutos-secos'] };
@@ -480,16 +497,39 @@ document.addEventListener('DOMContentLoaded', () => {
         let row = content.querySelector('.product-card__allergens');
         if (!row) { row = document.createElement('div'); row.className = 'product-card__allergens'; content.appendChild(row); }
         row.innerHTML = ordered.map(a =>
-            `<span class="allergen-icon" data-allergen="${a}"><span aria-hidden="true">${ICON[a]}</span></span>`
+            `<span class="allergen-icon" data-allergen="${a}" role="button" tabindex="0"><span aria-hidden="true">${ICON[a]}</span></span>`
         ).join('');
     });
 
     function localizeIcons() {
         document.querySelectorAll('.allergen-icon[data-allergen]').forEach(el => {
-            el.setAttribute('title', t('alerg-' + el.getAttribute('data-allergen')));
-            el.setAttribute('aria-label', t('alerg-' + el.getAttribute('data-allergen')));
+            const label = t('alerg-' + el.getAttribute('data-allergen'));
+            el.setAttribute('data-label', label);   // texto del globo (CSS ::after)
+            el.setAttribute('aria-label', label);    // lectores de pantalla
         });
     }
+
+    // Globo con el nombre del alérgeno al tocar/clicar el icono (móvil y
+    // escritorio). En escritorio también aparece al pasar el ratón (CSS :hover).
+    function closeAllTips(except) {
+        document.querySelectorAll('.allergen-icon.is-open').forEach(el => {
+            if (el !== except) el.classList.remove('is-open');
+        });
+    }
+    function toggleTip(el) {
+        const open = el.classList.contains('is-open');
+        closeAllTips();
+        if (!open) el.classList.add('is-open');
+    }
+    document.querySelectorAll('.product-card__allergens .allergen-icon[data-allergen]').forEach(el => {
+        el.addEventListener('click', (e) => { e.stopPropagation(); toggleTip(el); });
+        el.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleTip(el); }
+            else if (e.key === 'Escape') { el.classList.remove('is-open'); }
+        });
+    });
+    // Tocar/clicar fuera cierra cualquier globo abierto.
+    document.addEventListener('click', () => closeAllTips());
 
     if (used.size) {
         const main = document.querySelector('main') || document.body;
