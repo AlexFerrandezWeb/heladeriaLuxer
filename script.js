@@ -325,38 +325,55 @@ document.addEventListener('DOMContentLoaded', () => {
             nav.classList.remove('nav--compact');
         }
         toTop.classList.toggle('is-visible', window.scrollY > 400);
-    });
+    }, { passive: true });
 
-    // La franja de precios (sticky) se pega justo debajo de la nav. Como la
-    // nav cambia de altura al hacer scroll (con transición de ~1.2s), aquí
-    // sincronizamos su 'top' con la altura real de la nav en cada momento,
-    // siguiéndola también mientras la barra se agranda/encoge.
+    // La franja de precios (sticky) se pega justo debajo de la nav. La nav
+    // cambia de altura al hacer scroll con una transición de 1.2s. Antes
+    // seguíamos su altura con requestAnimationFrame leyendo nav.offsetHeight en
+    // CADA frame, lo que forzaba un recálculo de layout 60 veces/seg durante
+    // 1.2s; en helados/batidos (35-41 tarjetas) eso provocaba tirones.
+    // Ahora medimos las dos alturas de la nav UNA vez y, al cruzar el umbral,
+    // fijamos el 'top' de la franja al destino: la transición CSS de 'top'
+    // (misma curva y duración que la nav) la mantiene pegada SIN tocar el
+    // layout por frame.
     const priceLegend = document.querySelector('.legend-sticky');
     if (priceLegend) {
         const GAP = 0;
-        let followId = null;
-        let stopTimer = null;
-        const syncLegendTop = () => {
-            priceLegend.style.top = (nav.offsetHeight + GAP) + 'px';
+        let navTall = 0, navShort = 0;
+        const measureNav = () => {
+            const wasCompact = nav.classList.contains('nav--compact');
+            // 'nav--measuring' apaga las transiciones de la nav y de TODOS sus
+            // hijos para que alternar la clase no dispare animaciones/parpadeos.
+            nav.classList.add('nav--measuring');
+            nav.classList.remove('nav--compact');
+            navTall = nav.offsetHeight;
+            nav.classList.add('nav--compact');
+            navShort = nav.offsetHeight;
+            nav.classList.toggle('nav--compact', wasCompact);
+            nav.offsetHeight;                  // asienta el estado sin animar
+            nav.classList.remove('nav--measuring');
         };
-        const follow = () => {
-            syncLegendTop();
-            followId = requestAnimationFrame(follow);
+        let lastCompact = null;
+        const placeLegend = (animate) => {
+            const compact = window.scrollY > 60;
+            if (compact === lastCompact) return;
+            lastCompact = compact;
+            const top = (compact ? navShort : navTall) + GAP + 'px';
+            if (animate) {
+                priceLegend.style.top = top;   // la transición CSS la anima
+            } else {
+                const prev = priceLegend.style.transition;
+                priceLegend.style.transition = 'none';
+                priceLegend.style.top = top;
+                priceLegend.offsetHeight;
+                priceLegend.style.transition = prev;
+            }
         };
-        const stopFollow = () => {
-            if (followId) { cancelAnimationFrame(followId); followId = null; }
-            syncLegendTop();
-        };
-        syncLegendTop();
-        window.addEventListener('load', syncLegendTop);
-        window.addEventListener('resize', syncLegendTop);
-        window.addEventListener('scroll', syncLegendTop, { passive: true });
-        // Mientras la nav anima su tamaño, seguimos su altura cada frame
-        nav.addEventListener('transitionrun', () => {
-            if (!followId) follow();
-            clearTimeout(stopTimer);
-            stopTimer = setTimeout(stopFollow, 1400);
-        });
+        const reset = () => { measureNav(); lastCompact = null; placeLegend(false); };
+        reset();
+        window.addEventListener('load', reset);
+        window.addEventListener('resize', reset);
+        window.addEventListener('scroll', () => placeLegend(true), { passive: true });
     }
 
     // Animación de aparición de tarjetas al hacer scroll

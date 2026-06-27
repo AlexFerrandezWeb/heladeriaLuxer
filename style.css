@@ -1568,6 +1568,9 @@ link[rel="icon"] {
     margin-left: calc(-50vw + 50%);
     padding: 12px 1rem 14px;
     background: var(--aquamarine-blue);
+    /* Sigue la altura de la nav animando 'top' con la MISMA curva/duración que
+       la nav, vía CSS (sin recalcular layout por frame en JS). Ver script.js. */
+    transition: top 1.2s cubic-bezier(0.4,0,0.2,1);
 }
 
 @media (max-width: 768px) {
@@ -2016,6 +2019,13 @@ body {
     transition: padding 1.2s cubic-bezier(0.4,0,0.2,1), background 1.2s cubic-bezier(0.4,0,0.2,1);
     min-height: unset !important;
     height: unset !important;
+}
+
+/* Mientras script.js mide las dos alturas de la nav, desactiva todas las
+   transiciones (nav + hijos) para que la medición no provoque parpadeos. */
+.nav.nav--measuring,
+.nav.nav--measuring * {
+    transition: none !important;
 }
 
 @media (max-width: 768px) {
