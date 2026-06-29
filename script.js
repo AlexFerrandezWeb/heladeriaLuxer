@@ -125,7 +125,14 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', () => moveLangIndicator(activeLangBtn(), false));
     window.addEventListener('resize', () => moveLangIndicator(activeLangBtn(), false));
 
-    navToggle.addEventListener('click', () => {
+    const isMenuOpen = () => navList.classList.contains('active');
+    const closeMenu = () => {
+        navToggle.classList.remove('active');
+        navList.classList.remove('active');
+    };
+
+    navToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
         navToggle.classList.toggle('active');
         navList.classList.toggle('active');
     });
@@ -133,11 +140,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cerrar el menú al hacer clic en un enlace
     const navLinks = document.querySelectorAll('.nav__link');
     navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navToggle.classList.remove('active');
-            navList.classList.remove('active');
-        });
+        link.addEventListener('click', closeMenu);
     });
+
+    // Cerrar el menú al hacer clic fuera de él
+    document.addEventListener('click', (e) => {
+        if (!isMenuOpen()) return;
+        if (navList.contains(e.target) || navToggle.contains(e.target)) return;
+        closeMenu();
+    });
+
+    // Cerrar el menú al hacer scroll
+    window.addEventListener('scroll', () => {
+        if (isMenuOpen()) closeMenu();
+    }, { passive: true });
 
     // Cambio de idioma sin recargar (traduce en sitio + actualiza la URL)
     languageButtons.forEach(btn => {
