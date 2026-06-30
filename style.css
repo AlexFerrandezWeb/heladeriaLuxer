@@ -767,6 +767,27 @@ h2[data-i18n="tes"] {
     font-size: 0.9rem;
 }
 
+/* Crédito discreto del autor de la web (enlace a alexweb.es) */
+.footer__credit {
+    margin-top: 0.4rem;
+    color: var(--text-color);
+    font-size: 0.78rem;
+    opacity: 0.75;
+}
+
+.footer__credit-link {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: opacity 0.2s ease;
+}
+
+.footer__credit-link:hover,
+.footer__credit-link:focus {
+    opacity: 0.85;
+}
+
 @media (max-width: 768px) {
     .footer {
         padding: 3rem 1rem 1.5rem;
@@ -835,6 +856,14 @@ h2[data-i18n="tes"] {
     object-fit: cover;
     object-position: center;
     transition: transform 0.3s ease;
+}
+
+/* Cócteles: fotos verticales (copa alta). Con la zona de 220px se recortaban
+   demasiado por arriba/abajo, así que aquí la hacemos más alta (vertical) para
+   que se vea casi toda la copa; solo se recorta un poco a los lados. */
+.products-grid--coctel .product-card__image {
+    height: auto;
+    aspect-ratio: 4 / 5;
 }
 
 /* Placeholder "próximamente" para tarjetas cuya foto aún no existe (cócteles).
@@ -1446,10 +1475,15 @@ link[rel="icon"] {
     background: #fbd8c8 !important;
     color: #181818 !important;
     border: 2px solid #daa19c !important;
-    padding: 0.5rem 1rem;
+    /* Tamaño fluido: escala suave con el ancho del dispositivo, sin saltos
+       bruscos por breakpoints que hacían la etiqueta enorme en móviles medianos */
+    padding: clamp(0.18rem, 1.1vw, 0.5rem) clamp(0.5rem, 2.4vw, 1rem);
     border-radius: 20px;
-    font-size: 0.9rem;
+    font-size: clamp(0.6rem, 2.3vw, 0.9rem);
     font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+    max-width: calc(100% - 20px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     z-index: 10;
 }
@@ -1470,11 +1504,6 @@ link[rel="icon"] {
         font-size: 1.5rem;
         letter-spacing: 1px;
     }
-    
-    .product-label {
-        font-size: 0.7rem;
-        padding: 0.2rem 0.6rem;
-    }
 }
 
 @media (max-width: 480px) {
@@ -1489,10 +1518,8 @@ link[rel="icon"] {
         font-size: 1.2rem;
         letter-spacing: 0.5px;
     }
-    
+
     .product-label {
-        font-size: 0.6rem;
-        padding: 0.15rem 0.5rem;
         top: 5px;
         right: 5px;
     }
