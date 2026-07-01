@@ -858,6 +858,12 @@ h2[data-i18n="tes"] {
     transition: transform 0.3s ease;
 }
 
+/* Encuadre desplazado para bajar ligeramente el motivo dentro del marco
+   (p. ej. Affogato), sin llegar del todo a la parte superior de la foto. */
+.product-card__img--bottom {
+    object-position: center 30%;
+}
+
 /* Cócteles: fotos verticales (copa alta). Con la zona de 220px se recortaban
    demasiado por arriba/abajo, así que aquí la hacemos más alta (vertical) para
    que se vea casi toda la copa; solo se recorta un poco a los lados. */
