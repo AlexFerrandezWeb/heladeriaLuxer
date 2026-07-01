@@ -10,6 +10,31 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.review-cta__btn').forEach(a => { a.href = REVIEW_URL; });
 });
 
+/* ============================================================
+   GOOGLE ANALYTICS 4 — un único sitio para cambiarlo.
+   Pega tu ID de medición (formato G-XXXXXXXXXX) en GA_MEASUREMENT_ID.
+   Analytics SOLO se carga cuando el visitante acepta la barra de
+   cookies (cumplimiento AEPD/RGPD). Mientras el ID sea el placeholder,
+   no se carga nada, así que es seguro subirlo sin el ID definitivo.
+   ============================================================ */
+const GA_MEASUREMENT_ID = 'G-XX0SGZ9L6K'; // ID de GA4 (propiedad Heladería Luxer)
+
+let analyticsLoaded = false;
+function loadAnalytics() {
+    if (analyticsLoaded) return;
+    if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID === 'G-XXXXXXXXXX') return; // sin ID real, no cargamos
+    analyticsLoaded = true;
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.querySelector('.nav__toggle');
     const navList = document.querySelector('.nav__list');
@@ -277,11 +302,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (bar && !localStorage.getItem('cookiesAccepted')) {
         bar.style.display = 'flex';
     }
+    // Si ya aceptó en una visita anterior, arrancamos Analytics directamente.
+    if (localStorage.getItem('cookiesAccepted') === 'yes') {
+        loadAnalytics();
+    }
     const btn = document.getElementById('accept-cookies');
     if (btn) {
         btn.onclick = function() {
             localStorage.setItem('cookiesAccepted', 'yes');
             bar.style.display = 'none';
+            loadAnalytics(); // solo al aceptar
         };
     }
 
