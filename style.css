@@ -866,8 +866,11 @@ h2[data-i18n="tes"] {
 
 /* Affogato: recuadro con proporción fija 4:3 en todos los tamaños. Con el alto
    fijo (220/180px) la tarjeta a ancho completo en móvil cambiaba de proporción
-   y dejaba ver el pie de la copa; con aspect-ratio el encuadre es consistente. */
-.product-card__image--framed {
+   y dejaba ver el pie de la copa; con aspect-ratio el encuadre es consistente.
+   Se dobla la clase (.product-card__image.product-card__image--framed) para
+   ganar en especificidad a la regla móvil `.product-card__image{height:180px}`,
+   que si no anularía el aspect-ratio en el teléfono. */
+.product-card__image.product-card__image--framed {
     height: auto;
     aspect-ratio: 4 / 3;
 }
