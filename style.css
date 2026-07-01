@@ -864,6 +864,14 @@ h2[data-i18n="tes"] {
     object-position: center 30%;
 }
 
+/* Affogato: recuadro con proporción fija 4:3 en todos los tamaños. Con el alto
+   fijo (220/180px) la tarjeta a ancho completo en móvil cambiaba de proporción
+   y dejaba ver el pie de la copa; con aspect-ratio el encuadre es consistente. */
+.product-card__image--framed {
+    height: auto;
+    aspect-ratio: 4 / 3;
+}
+
 /* Cócteles: fotos verticales (copa alta). Con la zona de 220px se recortaban
    demasiado por arriba/abajo, así que aquí la hacemos más alta (vertical) para
    que se vea casi toda la copa; solo se recorta un poco a los lados. */
