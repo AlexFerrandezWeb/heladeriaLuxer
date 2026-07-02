@@ -752,6 +752,23 @@ h2[data-i18n="tes"] {
     color: #1da851;
 }
 
+/* Recuadro que envuelve los datos de contacto (Tel / Email / WhatsApp) */
+.footer__reserva-box {
+    padding: 0.9rem 1.1rem;
+    border: 2px solid var(--charm);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.footer__reserva-title {
+    margin: 0 0 0.2rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--charm);
+}
+
 /* "Cómo llegar" — enlace con icono de ubicación (CTA local) */
 .footer__directions {
     display: inline-flex;
