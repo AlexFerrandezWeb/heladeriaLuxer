@@ -756,7 +756,7 @@ h2[data-i18n="tes"] {
 .footer__directions {
     display: inline-flex;
     align-items: center;
-    align-self: center;
+    align-self: flex-start;
     gap: 0.4rem;
     margin: 0.15rem 0 0.5rem;
     color: var(--text-color);
@@ -857,6 +857,10 @@ h2[data-i18n="tes"] {
 
     .footer__section {
         text-align: center;
+    }
+
+    .footer__directions {
+        align-self: center;
     }
 
     .footer__title::after {
