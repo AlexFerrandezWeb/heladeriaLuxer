@@ -729,6 +729,56 @@ h2[data-i18n="tes"] {
     color: var(--charm);
 }
 
+/* Enlaces de contacto (teléfono, email, cómo llegar, WhatsApp) */
+.footer__contact-link {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer__contact-link:hover {
+    color: var(--charm);
+    text-decoration: underline;
+}
+
+.footer__whatsapp {
+    display: inline-block;
+    margin-top: 0.35rem;
+    font-weight: 600;
+    color: #25D366;
+}
+
+.footer__whatsapp:hover {
+    color: #1da851;
+}
+
+/* "Cómo llegar" — enlace con icono de ubicación (CTA local) */
+.footer__directions {
+    display: inline-flex;
+    align-items: center;
+    align-self: center;
+    gap: 0.4rem;
+    margin: 0.15rem 0 0.5rem;
+    color: var(--text-color);
+    text-decoration: underline;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.footer__directions::before {
+    content: "";
+    width: 1em;
+    height: 1em;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath d='M172.3 501.7C27 291 0 269.4 0 192 0 86 86 0 192 0s192 86 192 192c0 77.4-27 99-172.3 309.7-9.5 13.8-29.9 13.8-39.4 0zM192 272a80 80 0 1 0 0-160 80 80 0 1 0 0 160z'/%3E%3C/svg%3E") no-repeat center / contain;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath d='M172.3 501.7C27 291 0 269.4 0 192 0 86 86 0 192 0s192 86 192 192c0 77.4-27 99-172.3 309.7-9.5 13.8-29.9 13.8-39.4 0zM192 272a80 80 0 1 0 0-160 80 80 0 1 0 0 160z'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+.footer__directions:hover {
+    color: var(--charm);
+}
+
 .footer__social {
     display: flex;
     gap: 1rem;

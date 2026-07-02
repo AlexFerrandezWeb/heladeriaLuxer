@@ -35,6 +35,20 @@ function loadAnalytics() {
     gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
 }
 
+/* Eventos de conversión: clic en los CTA de contacto (teléfono, WhatsApp,
+   cómo llegar, email). Cada enlace lleva data-ga="cta_xxx". El evento solo
+   se envía si Analytics está cargado (consentimiento aceptado); si no,
+   window.gtag no existe y no se hace nada. Marca estos eventos como
+   "eventos clave" en GA4 para verlos como conversiones. */
+document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[data-ga]');
+    if (!link || typeof window.gtag !== 'function') return;
+    window.gtag('event', link.getAttribute('data-ga'), {
+        event_category: 'contacto',
+        event_label: window.location.pathname
+    });
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.querySelector('.nav__toggle');
     const navList = document.querySelector('.nav__list');
