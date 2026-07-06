@@ -23,8 +23,8 @@ META = {
  "en": {
   "":                 ("Luxer Ice Cream Parlour in Lo Pagán & San Pedro del Pinatar | Murcia Coast",
                         "Luxer ice cream parlour in Lo Pagán, San Pedro del Pinatar (Murcia, Spain). Artisan ice cream, slushies, milkshakes, cocktails and desserts by the beach. Open all summer."),
-  "helados":          ("Artisan Ice Cream in Lo Pagán & San Pedro del Pinatar | Luxer",
-                        "The best artisan ice cream in Lo Pagán and San Pedro del Pinatar. Over 20 unique flavours, sugar-free and lactose-free options. Open all summer on the Murcia coast."),
+    "helados":          ("La Menorquina Ice Cream in Lo Pagán & San Pedro del Pinatar | Luxer",
+                        "Our ice cream is from La Menorquina. Over 20 unique flavours, sugar-free and lactose-free options. Open all summer on the Murcia coast."),
   "granizados":       ("Refreshing Slushies in Lo Pagán & San Pedro del Pinatar | Luxer",
                         "Refreshing slushies in Lo Pagán and San Pedro del Pinatar: lemon, strawberry, mint and more. Perfect for summer on the Murcia coast."),
   "batidos":          ("Milkshakes & Waffles in Lo Pagán & San Pedro del Pinatar | Luxer",
@@ -45,8 +45,8 @@ META = {
  "fr": {
   "":                 ("Glacier Luxer à Lo Pagán & San Pedro del Pinatar | Côte de Murcie",
                         "Glacier Luxer à Lo Pagán, San Pedro del Pinatar (Murcie, Espagne). Glaces artisanales, granités, milk-shakes, cocktails et desserts au bord de la plage. Ouvert tout l'été."),
-  "helados":          ("Glaces Artisanales à Lo Pagán & San Pedro del Pinatar | Luxer",
-                        "Les meilleures glaces artisanales à Lo Pagán et San Pedro del Pinatar. Plus de 20 parfums, options sans sucre et sans lactose. Ouvert tout l'été sur la côte de Murcie."),
+    "helados":          ("Glaces La Menorquina à Lo Pagán &amp; San Pedro del Pinantar | Luxer",
+                        "Nos glaces proviennent de La Menorquina. Plus de 20 parfums, options sans sucre et sans lactose. Ouvert tout l'été sur la côte de Murcie."),
   "granizados":       ("Granités Rafraîchissants à Lo Pagán & San Pedro del Pinatar | Luxer",
                         "Granités rafraîchissants à Lo Pagán et San Pedro del Pinatar : citron, fraise, menthe et plus. Parfaits pour l'été sur la côte de Murcie."),
   "batidos":          ("Milk-shakes & Gaufres à Lo Pagán & San Pedro del Pinatar | Luxer",
