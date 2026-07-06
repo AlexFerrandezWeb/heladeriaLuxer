@@ -1666,6 +1666,10 @@ link[rel="icon"] {
   width: 100%;
 }
 
+.products-grid--stacked {
+  grid-template-columns: 1fr;
+}
+
 /* --- Sabores compactos: franja de precios única + tarjetas mini --- */
 .flavors-section {
     position: relative;

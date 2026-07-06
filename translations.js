@@ -167,6 +167,8 @@ const translations = {
         // Descripciones de copas de helado
         "affogato": "Affogato",
         "descripcion-affogato": "Bola de helado de vainilla bañada con un espresso caliente recién hecho.",
+        "cookie-shot": "Cookie shot, café expresso",
+        "descripcion-cookie-shot": "Café espresso servido en un cucurucho bañado en chocolate. Cuando te terminas el café, te comes la copa.",
         "descripcion-banana-split": "2 bolas de helado de chocolate y vainilla acompañado con un plátano y nata montada.",
         "descripcion-jamaica": "1 bola de helado de chocolate, nata líquida y virutas de chocolate.",
         "descripcion-merengada": "2 bolas de helado de leche merengada, nueces, canela y nata montada.",
@@ -599,6 +601,8 @@ const translations = {
         // Descripciones de copas de helado
         "affogato": "Affogato",
         "descripcion-affogato": "Scoop of vanilla ice cream topped with a freshly made hot espresso.",
+        "cookie-shot": "Cookie shot, espresso coffee",
+        "descripcion-cookie-shot": "Espresso coffee served in a chocolate-coated cone. When you finish the coffee, you eat the cup.",
         "descripcion-banana-split": "2 balls of chocolate and vanilla ice cream accompanied by a banana and whipped cream.",
         "descripcion-jamaica": "1 ball of chocolate ice cream, liquid cream and chocolate shavings.",
         "descripcion-merengada": "2 balls of caramel ice cream, nuts, cinnamon and whipped cream.",
@@ -1000,6 +1004,8 @@ const translations = {
         // Descripciones de copas de helado
         "affogato": "Affogato",
         "descripcion-affogato": "Boule de glace à la vanille arrosée d'un espresso chaud fraîchement préparé.",
+        "cookie-shot": "Cookie shot, café expresso",
+        "descripcion-cookie-shot": "Café espresso servi dans un cornet enrobé de chocolat. Quand vous avez fini le café, vous mangez la coupe.",
         "descripcion-banana-split": "2 boules de glace au chocolat et à la vanille accompagnées d'un banane et d'une crème montée.",
         "descripcion-jamaica": "1 boule de glace au chocolat, crème liquide et copeaux de chocolat.",
         "descripcion-merengada": "2 boules de glace au caramel, noix, cannelle et crème montée.",
