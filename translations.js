@@ -99,7 +99,6 @@ const translations = {
         "tanque": "Tanque",
         "heineken": "Heineken",
         "aguila-sin-filtrar": "Águila sin filtrar",
-        "amstel-oro-tostada": "Amstel oro tostada",
         // Productos de aperitivos
         "patatas-fritas": "Patatas fritas bolsa",
         "aceitunas": "Aceitunas",
@@ -558,7 +557,6 @@ const translations = {
         "tanque": "Large beer (tanque)",
         "heineken": "Heineken",
         "aguila-sin-filtrar": "Aguila unfiltered",
-        "amstel-oro-tostada": "Amstel gold toasted",
         // Productos de aperitivos
         "patatas-fritas": "Crisps bag",
         "aceitunas": "Olives",
@@ -985,7 +983,6 @@ const translations = {
         "tanque": "Grande bière (tanque)",
         "heineken": "Heineken",
         "aguila-sin-filtrar": "Aguila non filtrée",
-        "amstel-oro-tostada": "Amstel or toasté",
         // Productos de aperitivos
         "patatas-fritas": "Sachet de chips",
         "aceitunas": "Olives",
