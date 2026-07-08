@@ -444,7 +444,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .category-card__title {
-        font-size: 1.3rem;
+        font-size: 1.45rem;
         padding: 0.8rem;
     }
 
@@ -536,7 +536,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .category-card__title {
-        font-size: 1.2rem;
+        font-size: 1.35rem;
     }
 }
 
@@ -656,7 +656,7 @@ h2[data-i18n="tes"] {
     margin: 0;
     color: var(--charm);
     font-family: 'Lobster Two', Arial, Helvetica, sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     text-align: center;
     background: var(--catskill-white);
     border-top: 2px solid transparent;
@@ -944,6 +944,12 @@ h2[data-i18n="tes"] {
 .product-card__image.product-card__image--framed {
     height: auto;
     aspect-ratio: 4 / 3;
+}
+
+/* Cookie shot: la foto es cuadrada (2048x2048). Con el marco 4:3 se recortaba
+   por arriba/abajo y daba sensación de zoom; con marco 1:1 se ve entera. */
+.product-card__image.product-card__image--square {
+    aspect-ratio: 1 / 1;
 }
 
 /* Cócteles: fotos verticales (copa alta). Con la zona de 220px se recortaban
@@ -2029,7 +2035,7 @@ h1.main__title {
 }
 @media (max-width: 400px) {
   .category-card__title {
-    font-size: 1rem !important;
+    font-size: 1.15rem !important;
     word-break: break-word !important;
     white-space: normal !important;
     padding: 0.5rem !important;

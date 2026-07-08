@@ -335,11 +335,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const wLang = getCurrentLang();
         const tr = translations[wLang] || translations.es;
         const hour = new Date().getHours();
-        const part = hour < 13 ? 'morning' : (hour < 20 ? 'afternoon' : 'evening');
+        // "Buenos días" solo de 7:00 a 12:59. De 00:00 a 06:59 es de noche
+        // (la gente viene de madrugada) -> "Buenas noches", no "Buenos días".
+        const part = (hour >= 7 && hour < 13) ? 'morning' : ((hour >= 13 && hour < 20) ? 'afternoon' : 'evening');
         const greetEl = document.getElementById('welcome-greeting');
         const subEl = document.getElementById('welcome-sub');
         if (greetEl && tr['welcome-' + part]) greetEl.textContent = tr['welcome-' + part];
-        if (subEl && tr['welcome-sub-' + part]) subEl.textContent = tr['welcome-sub-' + part];
+        // La frase de humor se elige al azar entre las 7 disponibles por franja.
+        const sub = tr['welcome-sub-' + part];
+        const subText = Array.isArray(sub) ? sub[Math.floor(Math.random() * sub.length)] : sub;
+        if (subEl && subText) subEl.textContent = subText;
         sessionStorage.setItem('welcomeSeen', '1');
         let wDismissed = false;
         const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
