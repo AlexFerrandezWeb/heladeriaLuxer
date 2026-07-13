@@ -80,6 +80,29 @@ WELCOME_FALLBACK = {
 WELCOME_GREETING_RE = re.compile(r'(<h2\b[^>]*\bid="welcome-greeting"[^>]*>).*?(</h2>)', re.DOTALL)
 WELCOME_SUB_RE = re.compile(r'(<p\b[^>]*\bid="welcome-sub"[^>]*>).*?(</p>)', re.DOTALL)
 
+# Migas de pan (BreadcrumbList JSON-LD). La fuente ES lleva el bloque entre
+# marcadores <!-- breadcrumb -->; aquí lo regeneramos por idioma: traducimos los
+# nombres (Inicio/Home/Accueil y la categoría) y prefijamos las URLs (/en, /fr).
+HOME_NAME = {"es": "Inicio", "en": "Home", "fr": "Accueil"}
+BREADCRUMB_RE = re.compile(r'<!-- breadcrumb -->.*?<!-- /breadcrumb -->', re.DOTALL)
+
+def build_breadcrumb(lang: str, slug: str) -> str:
+    home_url = f"{DOMAIN}/" if lang == "es" else f"{DOMAIN}/{lang}/"
+    cat_url = f"{DOMAIN}/{slug}" if lang == "es" else f"{DOMAIN}/{lang}/{slug}"
+    data = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": HOME_NAME[lang], "item": home_url},
+            {"@type": "ListItem", "position": 2, "name": T[lang].get(slug, slug), "item": cat_url},
+        ],
+    }
+    return ('<!-- breadcrumb -->\n'
+            '    <script type="application/ld+json">\n'
+            '    ' + json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n'
+            '    </script>\n'
+            '    <!-- /breadcrumb -->')
+
 def slug_for(p: Path) -> str:
     return "" if p.stem == "index" else p.stem
 
@@ -146,6 +169,9 @@ def build_page(src: Path, lang: str):
     text = text.replace(ES_LOCALE_BLOCK, og_locale_block(lang), 1)
     # 6) enlaces internos con prefijo de idioma
     text = LINK_RE.sub(lambda m: f'href="/{lang}/{m.group(1)}"', text)
+    # 7) breadcrumb JSON-LD traducido y con URLs del idioma (solo si hay marcador)
+    if slug and "<!-- breadcrumb -->" in text:
+        text = BREADCRUMB_RE.sub(lambda m: build_breadcrumb(lang, slug), text)
 
     out = ROOT / lang / src.name
     out.parent.mkdir(parents=True, exist_ok=True)
