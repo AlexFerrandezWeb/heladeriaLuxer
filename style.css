@@ -935,6 +935,12 @@ h2[data-i18n="tes"] {
     object-position: center 30%;
 }
 
+/* Sube el motivo dentro del marco (p. ej. Piña Colada): la copa queda más
+   arriba y se recorta un poco por la parte de arriba de la foto. */
+.product-card__img--top {
+    object-position: center bottom;
+}
+
 /* Affogato: recuadro con proporción fija 4:3 en todos los tamaños. Con el alto
    fijo (220/180px) la tarjeta a ancho completo en móvil cambiaba de proporción
    y dejaba ver el pie de la copa; con aspect-ratio el encuadre es consistente.
