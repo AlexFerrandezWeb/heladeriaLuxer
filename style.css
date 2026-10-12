@@ -2856,3 +2856,283 @@ body {
         font-size: 1rem;
     }
 }
+
+/* ---- Cierre de temporada: persiana que baja (la crea script.js) ---- */
+.closed-on,
+.closed-on body {
+    overflow: hidden;
+    height: 100%;
+}
+
+.closed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* Alto real de la pantalla en móvil (sin contar la barra del navegador) */
+    height: 100vh;
+    height: 100dvh;
+    z-index: 3000;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Chapa de la persiana en los tonos del logo (cada lama con volumen) */
+    background:
+        repeating-linear-gradient(180deg,
+            #f7fcfc 0, #eef8f8 12px, #e2f1f1 24px, #e2f1f1 26px);
+    box-shadow: 0 10px 30px rgba(45, 58, 74, 0.25);
+    animation: closed-drop 1s cubic-bezier(0.3, 0.9, 0.35, 1.08) both;
+}
+
+/* Solo se desplaza el mensaje (si no cabe); la persiana y su barra no */
+.closed__scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    padding: 1.5rem 1rem;
+}
+
+/* Ranuras de las lamas POR ENCIMA del mensaje: así parece pintado
+   sobre la persiana (no bloquea los clics) */
+.closed::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+        repeating-linear-gradient(180deg,
+            transparent 0, transparent 23px,
+            rgba(45, 58, 74, 0.11) 23px, rgba(45, 58, 74, 0.11) 24px,
+            rgba(255, 255, 255, 0.4) 24px, rgba(255, 255, 255, 0.4) 26px);
+}
+
+/* Borde inferior: barra de la persiana con su tirador */
+.closed__bar {
+    flex: none;
+    position: relative;
+    height: 14px;
+    z-index: 3;
+    background:
+        radial-gradient(circle at 50% 50%, var(--text-color) 0 4px, transparent 5px) center / 60px 14px no-repeat,
+        linear-gradient(180deg, var(--neptune), #6aa8a0);
+}
+
+/* Al pulsar "Ver la carta igualmente" la persiana sube igual que bajó */
+.closed.is-up {
+    transform: translateY(-105%);
+    pointer-events: none;
+    animation: closed-rise 1.1s cubic-bezier(0.45, 0, 0.25, 1) both;
+}
+
+.closed.no-anim {
+    animation: none;
+    visibility: hidden;
+}
+
+.closed__card {
+    /* Capa de pintura blanca sobre la chapa (sin sombra: va pegada) */
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.82);
+    border-radius: 14px;
+    max-width: 420px;
+    width: 100%;
+    margin: auto;
+    padding: 2rem 1.5rem 1.6rem;
+    text-align: center;
+}
+
+.closed__logo {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 1rem;
+}
+
+.closed__badge {
+    display: inline-block;
+    background: var(--rose);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    margin-bottom: 0.9rem;
+}
+
+.closed__title {
+    font-family: 'Lobster Two', Arial, Helvetica, sans-serif;
+    color: var(--charm);
+    font-size: 2.2rem;
+    line-height: 1.15;
+    margin: 0 0 0.8rem;
+}
+
+.closed__text {
+    color: var(--text-color);
+    font-size: 1.08rem;
+    line-height: 1.5;
+    margin: 0 0 1.1rem;
+}
+
+.closed__return {
+    display: inline-block;
+    background: var(--catskill-white);
+    border: 2px solid var(--charm);
+    color: var(--text-color);
+    font-weight: 800;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    padding: 0.55rem 1rem;
+    margin: 0 0 0.9rem;
+}
+
+.closed__hours {
+    color: #5b6878;
+    font-size: 0.92rem;
+    margin: 0 0 1.1rem;
+}
+
+.closed__review {
+    border-top: 1px dashed var(--wafer);
+    padding-top: 1.1rem;
+    margin: 0 0 0.8rem;
+}
+
+.closed__review-text {
+    color: var(--text-color);
+    font-size: 0.95rem;
+    margin: 0 0 0.7rem;
+}
+
+.closed__review-btn {
+    display: inline-block;
+    background: var(--charm);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 999px;
+    padding: 0.7rem 1.4rem;
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.closed__review-btn:hover {
+    background: var(--neptune);
+}
+
+.closed__menu {
+    background: none;
+    border: none;
+    color: var(--neptune);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    padding: 0.5rem;
+}
+
+.closed__menu:hover {
+    color: var(--text-color);
+}
+
+/* Pastilla flotante tras subir la persiana (toca para volver a bajarla) */
+.closed-pill {
+    position: fixed;
+    left: 1rem;
+    bottom: 1.1rem;
+    z-index: 999;
+    display: none;
+    background: var(--text-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 999px;
+    padding: 0.6rem 1rem;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 700;
+    box-shadow: 0 6px 18px rgba(45, 58, 74, 0.3);
+    cursor: pointer;
+    max-width: calc(100% - 5.5rem);
+}
+
+.closed-pill.is-visible {
+    display: block;
+}
+
+@keyframes closed-drop {
+    from { transform: translateY(-100%); }
+    to   { transform: translateY(0); }
+}
+
+/* Primero un tirón corto hacia abajo (como al desbloquearla) y luego sube */
+@keyframes closed-rise {
+    0%   { transform: translateY(0); visibility: visible; }
+    12%  { transform: translateY(12px); }
+    99%  { visibility: visible; }
+    100% { transform: translateY(-105%); visibility: hidden; }
+}
+
+@media (max-width: 480px) {
+    .closed__title { font-size: 1.9rem; }
+    .closed__card { padding: 1.6rem 1.2rem 1.3rem; }
+    .closed__review-btn { font-size: 0.92rem; padding: 0.7rem 1.1rem; white-space: nowrap; }
+}
+
+/* Móviles normales: compacto para que quepa entero sin hacer scroll */
+@media (max-width: 480px), (max-height: 760px) {
+    .closed__scroll { padding: 0.9rem 0.75rem; }
+    .closed__card { padding: 1.1rem 1rem 0.9rem; }
+    /* El logo crece con el alto de pantalla (grande si sobra sitio) */
+    .closed__logo { width: clamp(64px, 15vh, 130px); height: clamp(64px, 15vh, 130px); margin-bottom: 0.7rem; }
+    .closed__badge { font-size: 0.75rem; padding: 0.3rem 0.8rem; margin-bottom: 0.55rem; }
+    .closed__title { font-size: 1.7rem; margin-bottom: 0.5rem; }
+    .closed__text { font-size: 0.98rem; line-height: 1.4; margin-bottom: 0.7rem; }
+    .closed__return { font-size: 1rem; padding: 0.45rem 0.9rem; margin-bottom: 0.6rem; }
+    .closed__hours { font-size: 0.85rem; margin-bottom: 0.7rem; }
+    .closed__review { padding-top: 0.7rem; margin-bottom: 0.4rem; }
+    .closed__review-text { font-size: 0.88rem; margin-bottom: 0.5rem; }
+    .closed__review-btn { padding: 0.6rem 1.1rem; }
+    .closed__menu { font-size: 0.9rem; padding: 0.35rem; }
+}
+
+/* Móviles pequeños (iPhone SE y similares) */
+@media (max-height: 620px) {
+    .closed__scroll { padding: 0.6rem 0.6rem; }
+    .closed__card { padding: 0.9rem 0.85rem 0.7rem; }
+    .closed__logo { width: clamp(60px, 14vh, 84px); height: clamp(60px, 14vh, 84px); margin-bottom: 0.5rem; }
+    .closed__badge { margin-bottom: 0.45rem; }
+    .closed__title { font-size: 1.45rem; margin-bottom: 0.4rem; }
+    .closed__text { font-size: 0.88rem; margin-bottom: 0.55rem; }
+    .closed__return { font-size: 0.92rem; margin-bottom: 0.5rem; }
+    .closed__hours { font-size: 0.8rem; margin-bottom: 0.55rem; }
+    .closed__review { padding-top: 0.55rem; }
+    .closed__review-text { font-size: 0.82rem; margin-bottom: 0.45rem; }
+    .closed__review-btn { font-size: 0.86rem; padding: 0.55rem 1rem; }
+}
+
+/* Pantallas muy bajitas: se quita la frase de la reseña (queda el botón) */
+@media (max-height: 540px) {
+    .closed__review-text { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .closed,
+    .closed.is-up {
+        animation: none;
+    }
+
+    .closed.is-up {
+        visibility: hidden;
+    }
+}

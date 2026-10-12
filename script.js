@@ -49,6 +49,103 @@ document.addEventListener('click', (e) => {
     });
 });
 
+/* ============================================================
+   CIERRE DE TEMPORADA — "persiana" que baja en todas las páginas
+   cuando la heladería está cerrada, para que nadie llame ni escriba
+   preguntando si está abierta. Se calcula sola por fecha:
+   fuera de SEASON_OPEN..SEASON_CLOSE (mes-día) se muestra.
+   CLOSED_OVERRIDE: null = automático, true = forzar cerrado,
+   false = forzar abierto (p. ej. si un año se abre antes).
+   Textos: claves closed-* en translations.js ({year} = año de vuelta).
+   ============================================================ */
+const SEASON_OPEN = '07-01';
+const SEASON_CLOSE = '08-31';
+const CLOSED_OVERRIDE = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+    const now = new Date();
+    const md = String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+    const isClosed = CLOSED_OVERRIDE !== null ? CLOSED_OVERRIDE : (md < SEASON_OPEN || md > SEASON_CLOSE);
+    if (!isClosed) return;
+
+    // En las páginas legales no tapamos nada
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    const lang = (parts[0] === 'en' || parts[0] === 'fr') ? parts[0] : 'es';
+    const slug = (parts[parts.length - 1] || '').replace(/\.html$/, '');
+    if (['privacidad', 'cookies', 'terminos'].includes(slug)) return;
+
+    const tr = translations[lang] || translations.es;
+    const year = md > SEASON_CLOSE ? now.getFullYear() + 1 : now.getFullYear();
+    const t = (key) => (tr[key] || translations.es[key] || '').replace('{year}', year);
+    const root = document.documentElement;
+
+    // La persiana manda: la bienvenida de la portada no se muestra
+    root.classList.remove('welcome-on');
+
+    const shutter = document.createElement('div');
+    shutter.className = 'closed';
+    shutter.setAttribute('role', 'dialog');
+    shutter.setAttribute('aria-modal', 'true');
+    shutter.setAttribute('aria-labelledby', 'closed-title');
+    shutter.innerHTML =
+        '<div class="closed__scroll"><div class="closed__card">' +
+            '<img src="/assets/logo.webp" alt="Heladería Luxer" class="closed__logo" width="96" height="96">' +
+            '<span class="closed__badge"></span>' +
+            '<h2 class="closed__title" id="closed-title"></h2>' +
+            '<p class="closed__text"></p>' +
+            '<p class="closed__return"></p>' +
+            '<p class="closed__hours"></p>' +
+            '<div class="closed__review">' +
+                '<p class="closed__review-text"></p>' +
+                '<a class="closed__review-btn" target="_blank" rel="noopener" data-ga="cta_resena"></a>' +
+            '</div>' +
+            '<button type="button" class="closed__menu"></button>' +
+        '</div></div>' +
+        '<div class="closed__bar" aria-hidden="true"></div>';
+    shutter.querySelector('.closed__badge').textContent = t('closed-badge');
+    shutter.querySelector('.closed__title').textContent = t('closed-title');
+    shutter.querySelector('.closed__text').textContent = t('closed-text');
+    shutter.querySelector('.closed__return').textContent = t('closed-return');
+    shutter.querySelector('.closed__hours').textContent = t('closed-hours');
+    shutter.querySelector('.closed__menu').textContent = t('closed-menu');
+    shutter.querySelector('.closed__review-text').textContent = t('closed-review-text');
+    const reviewBtn = shutter.querySelector('.closed__review-btn');
+    reviewBtn.textContent = t('closed-review-btn');
+    reviewBtn.href = REVIEW_URL;
+
+    // Tras subir la persiana queda una pastilla que la vuelve a bajar
+    const pill = document.createElement('button');
+    pill.type = 'button';
+    pill.className = 'closed-pill';
+    pill.textContent = '🔒 ' + t('closed-pill');
+
+    document.body.append(shutter, pill);
+
+    const open = () => {
+        root.classList.add('closed-on');
+        shutter.classList.remove('is-up', 'no-anim');
+        pill.classList.remove('is-visible');
+    };
+    const close = () => {
+        root.classList.remove('closed-on');
+        shutter.classList.add('is-up');
+        pill.classList.add('is-visible');
+        try { sessionStorage.setItem('closedSeen', '1'); } catch (e) {}
+    };
+    shutter.querySelector('.closed__menu').addEventListener('click', close);
+    pill.addEventListener('click', open);
+
+    // Una vez por sesión: si ya la subió, al cambiar de página solo se ve la pastilla
+    let seen = false;
+    try { seen = sessionStorage.getItem('closedSeen') === '1'; } catch (e) {}
+    if (seen) {
+        shutter.classList.add('is-up', 'no-anim');
+        pill.classList.add('is-visible');
+    } else {
+        open();
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.querySelector('.nav__toggle');
     const navList = document.querySelector('.nav__list');
