@@ -19,6 +19,32 @@ document.addEventListener('DOMContentLoaded', () => {
    ============================================================ */
 const GA_MEASUREMENT_ID = 'G-XX0SGZ9L6K'; // ID de GA4 (propiedad Heladería Luxer)
 
+/* La carta tambien se ensena como muestra dentro de alexweb.es, la pagina
+   de proyectos de quien la hizo. Ahi no se pregunta por cookies ni se carga
+   Analytics: no se guarda ninguna cookie que no sea tecnica, el aviso no
+   tapa la carta a quien solo esta mirando como esta hecha y esas visitas no
+   se cuentan como clientes de la heladeria.
+   Se recuerda en sessionStorage porque al navegar dentro del marco el
+   referer pasa a ser la propia carta. */
+function vistaDesdeAlexweb() {
+    if (window.self === window.top) return false;
+    try {
+        if (sessionStorage.getItem('vistaAlexweb') === '1') return true;
+    } catch (e) { /* sin sessionStorage */ }
+    let origen = '';
+    try {
+        const ancestros = location.ancestorOrigins;
+        origen = ancestros && ancestros.length
+            ? new URL(ancestros[ancestros.length - 1]).hostname
+            : new URL(document.referrer).hostname;
+    } catch (e) { return false; }
+    const esAlexweb = /(^|\.)alexweb\.es$/.test(origen) || origen === 'localhost';
+    if (esAlexweb) {
+        try { sessionStorage.setItem('vistaAlexweb', '1'); } catch (e) { /* sin sessionStorage */ }
+    }
+    return esAlexweb;
+}
+
 let analyticsLoaded = false;
 function loadAnalytics() {
     if (analyticsLoaded) return;
@@ -410,11 +436,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const bar = document.getElementById('cookie-bar');
-    if (bar && !localStorage.getItem('cookiesAccepted')) {
+    const enAlexweb = vistaDesdeAlexweb();
+    if (bar && !localStorage.getItem('cookiesAccepted') && !enAlexweb) {
         bar.style.display = 'flex';
     }
     // Si ya aceptó en una visita anterior, arrancamos Analytics directamente.
-    if (localStorage.getItem('cookiesAccepted') === 'yes') {
+    if (localStorage.getItem('cookiesAccepted') === 'yes' && !enAlexweb) {
         loadAnalytics();
     }
     const btn = document.getElementById('accept-cookies');
